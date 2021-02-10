@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-02-10T12:00:34.540Z</updated>
+    <updated>2021-02-10T12:50:20.457Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -23,8 +23,10 @@ API接口：https://github.com/argoai/argoverse-api</p>
 </blockquote>
 <h1 id="数据采集">🗜数据采集</h1>
 <p>Argoverse数据集均由Argo AI公司的自动驾驶测试车采集，主要包括两个城市：迈阿密和匹兹堡。迈阿密包覆盖204Km道路，匹兹堡覆盖86Km道路。<br>
-<img src="https://ChenChenGith.github.io/post-images/1612956376368.png" alt="&quot;s&quot;" width="300" height="100" loading="lazy"><br>
-匹兹堡：<img src="https://ChenChenGith.github.io/post-images/1612956382637.png" alt="" loading="lazy"></p>
+MIA：<br>
+<img src="https://ChenChenGith.github.io/post-images/1612961022643.png" alt="" width="400" height="400" loading="lazy"><br>
+PET：<br>
+<img src="https://ChenChenGith.github.io/post-images/1612961016174.png" alt="" width="400" height="400" loading="lazy"></p>
 ]]></content>
     </entry>
     <entry>
