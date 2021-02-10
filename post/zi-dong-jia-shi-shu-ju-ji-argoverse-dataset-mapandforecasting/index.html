@@ -1,0 +1,176 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>【未完成】自动驾驶数据集-Argoverse Dataset-Map&amp;Forecasting-简介 | Chen Chen</title>
+<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1612957641227">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="【未完成】自动驾驶数据集-Argoverse Dataset-Map&amp;Forecasting-简介 | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="Argoverse数据集是由Argo AI、卡内基梅隆大学、佐治亚理工学院发布的用于支持自动驾驶汽车3D Tracking和Motion Forecasting研究的数据集。本篇博客主要对其中的HD Map和Motion Forecasti..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://ChenChenGith.github.io">
+  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1612957641227" alt="">
+  </a>
+  <h1 class="site-title">
+    Chen Chen
+  </h1>
+  <p class="site-description">
+    Welcome to my page!
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              【未完成】自动驾驶数据集-Argoverse Dataset-Map&amp;Forecasting-简介
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-02-10
+              </span>
+              <span>
+                1 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>Argoverse数据集是由Argo AI、卡内基梅隆大学、佐治亚理工学院发布的用于支持自动驾驶汽车3D Tracking和Motion Forecasting研究的数据集。本篇博客主要对其中的HD Map和Motion Forecasting 数据集进行简介。</p>
+<blockquote>
+<p>数据集地址：https://www.argoverse.org/data.html<br>
+API接口：https://github.com/argoai/argoverse-api</p>
+</blockquote>
+<h1 id="数据采集">🗜数据采集</h1>
+<p>Argoverse数据集均由Argo AI公司的自动驾驶测试车采集，主要包括两个城市：迈阿密和匹兹堡。迈阿密包覆盖204Km道路，匹兹堡覆盖86Km道路。<br>
+<img src="https://ChenChenGith.github.io/post-images/1612956376368.png#w50" alt="555" loading="lazy"><br>
+匹兹堡：<img src="https://ChenChenGith.github.io/post-images/1612956382637.png" alt="" loading="lazy"></p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%95%B0%E6%8D%AE%E9%87%87%E9%9B%86">🗜数据采集</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://ChenChenGith.github.io/post/hello-world/">
+              <h3 class="post-title">
+                Hello World
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  
+  <a class="rss" href="https://ChenChenGith.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

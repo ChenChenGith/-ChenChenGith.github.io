@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-02-04T03:27:54.897Z</updated>
+    <updated>2021-02-10T11:47:23.584Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -10,6 +10,23 @@
     <logo>https://ChenChenGith.github.io/images/avatar.png</logo>
     <icon>https://ChenChenGith.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Chen Chen</rights>
+    <entry>
+        <title type="html"><![CDATA[【未完成】自动驾驶数据集-Argoverse Dataset-Map&Forecasting-简介]]></title>
+        <id>https://ChenChenGith.github.io/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/</id>
+        <link href="https://ChenChenGith.github.io/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/">
+        </link>
+        <updated>2021-02-10T11:08:57.000Z</updated>
+        <content type="html"><![CDATA[<p>Argoverse数据集是由Argo AI、卡内基梅隆大学、佐治亚理工学院发布的用于支持自动驾驶汽车3D Tracking和Motion Forecasting研究的数据集。本篇博客主要对其中的HD Map和Motion Forecasting 数据集进行简介。</p>
+<blockquote>
+<p>数据集地址：https://www.argoverse.org/data.html<br>
+API接口：https://github.com/argoai/argoverse-api</p>
+</blockquote>
+<h1 id="数据采集">🗜数据采集</h1>
+<p>Argoverse数据集均由Argo AI公司的自动驾驶测试车采集，主要包括两个城市：迈阿密和匹兹堡。迈阿密包覆盖204Km道路，匹兹堡覆盖86Km道路。<br>
+<img src="https://ChenChenGith.github.io/post-images/1612956376368.png#w50" alt="555" loading="lazy"><br>
+匹兹堡：<img src="https://ChenChenGith.github.io/post-images/1612956382637.png" alt="" loading="lazy"></p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hello World]]></title>
         <id>https://ChenChenGith.github.io/post/hello-world/</id>
