@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-02-23T09:49:43.637Z</updated>
+    <updated>2021-02-23T09:50:32.666Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -25,9 +25,9 @@
 </blockquote>
 <p>可以看到，当说到问题的时候，已经是很久之后了，别人一眼看不到你的科学问题，就会迟迟进入不了阅读状态，所以说引言一定是要直面问题的。更改之后现状变成这样：</p>
 <blockquote>
-<p>自动驾驶重要性（宏观一段）--&gt;风险评估重要性（一句）--&gt;风险评估问题（与上句同一段）--&gt;综上...<br>
-专家阅读的时候就会：第一段很快过，第二段首先把握了具体方向，接着马上就是具体问题解析，然后最后一段说明要做什么，很清晰，不绕，直接陈述就是最好的表达。</p>
+<p>自动驾驶重要性（宏观一段）--&gt;风险评估重要性（一句）--&gt;风险评估问题（与上句同一段）--&gt;综上...</p>
 </blockquote>
+<p>专家阅读的时候就会：第一段很快过，第二段首先把握了具体方向，接着马上就是具体问题解析，然后最后一段说明要做什么，很清晰，不绕，直接陈述就是最好的表达。</p>
 ]]></content>
     </entry>
     <entry>
