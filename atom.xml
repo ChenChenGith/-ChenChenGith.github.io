@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-02-22T10:29:39.461Z</updated>
+    <updated>2021-02-23T09:49:09.480Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -11,17 +11,31 @@
     <icon>https://ChenChenGith.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Chen Chen</rights>
     <entry>
+        <title type="html"><![CDATA[【科研随笔】基金写作心得]]></title>
+        <id>https://ChenChenGith.github.io/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/</id>
+        <link href="https://ChenChenGith.github.io/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/">
+        </link>
+        <updated>2021-02-23T09:35:09.000Z</updated>
+        <content type="html"><![CDATA[<p>年前在写本子，年后又大改本子。在写和改的过程中，有一些心得总结一下。</p>
+<h4 id="引言直面问题">引言：直面问题</h4>
+<p>不论是基金还是论文，逻辑很重要。但一般来说，逻辑不能太绕，一是太绕了，会显得啰嗦，反而淹没了想要讲的核心问题；二是面对同领域的专家学者，很多道理不用多讲，其实最关注的也还是你的核心问题。<br>
+这次写本子一开始就像写学位论文一样，逻辑是这样的：</p>
+<blockquote>
+<p>自动驾驶重要性（一段）--&gt;驾驶安全重要性（一段）--&gt;风险评估与自动驾驶决策（一句）--&gt;风险评估重要性（一段）--&gt;风险评估问题（一段）--&gt;综上...<br>
+可以看到，当说到问题的时候，已经是很久之后了，别人一眼看不到你的科学问题，就会迟迟进入不了阅读状态，所以说引言一定是要直面问题的。更改之后现状变成这样：<br>
+自动驾驶重要性（宏观一段）--&gt;风险评估重要性（一句）--&gt;风险评估问题（与上句同一段）--&gt;综上...<br>
+专家阅读的时候就会：第一段很快过，第二段首先把握了具体方向，接着马上就是具体问题解析，然后最后一段说明要做什么，很清晰，不绕，直接陈述就是最好的表达。</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[【生活随笔】博后半年小结]]></title>
         <id>https://ChenChenGith.github.io/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/</id>
         <link href="https://ChenChenGith.github.io/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/">
         </link>
         <updated>2021-02-21T10:20:11.000Z</updated>
-        <summary type="html"><![CDATA[<p>来到清华已经过去了半年，本来应该是在春节前总结最为合适，但因为一直忙着写基金本子，一直拖到了年后来。<br>
-如果用几个关键词来总结这半年的感觉，应该是：激动，习惯，挣扎。</p>
-]]></summary>
         <content type="html"><![CDATA[<p>来到清华已经过去了半年，本来应该是在春节前总结最为合适，但因为一直忙着写基金本子，一直拖到了年后来。<br>
 如果用几个关键词来总结这半年的感觉，应该是：激动，习惯，挣扎。</p>
-<!-- more -->
 <h3 id="0️⃣激动的新奇">0️⃣激动的新奇</h3>
 <p>“清华大学，这是清华大学”，没错，这是在开始的一个月心里最多的想法。我是从来没有一天能想到我与清华之间能有什么关系：除了大二的时候参加大物竞赛来清华参加过一次考试。毕竟是国内的第一学府，即使是在博后面试的时候，我也不抱太大希望，这可是清华！但在我真的从深圳又再一次回到北京的时候，特别是站在清华大学门口的时候，激动是真的，不论以后会如何，至少我来到过了某个全国的顶峰。</p>
 <h3 id="1️⃣开始的打击">1️⃣开始的打击</h3>
