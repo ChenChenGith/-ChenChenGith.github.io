@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-02-23T09:53:09.648Z</updated>
+    <updated>2021-02-23T09:55:52.922Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -16,7 +16,11 @@
         <link href="https://ChenChenGith.github.io/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/">
         </link>
         <updated>2021-02-23T09:35:09.000Z</updated>
-        <content type="html"><![CDATA[<p>年前在写本子，年后又大改本子。在写和改的过程中，有一些心得总结一下。</p>
+        <summary type="html"><![CDATA[<p>【<font color=gray>施工中...</font>】</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>【<font color=gray>施工中...</font>】</p>
+<!-- more -->
+<p>年前在写本子，年后又大改本子。在写和改的过程中，有一些心得总结一下。</p>
 <h3 id="引言直面问题">引言：直面问题</h3>
 <p>不论是基金还是论文，逻辑很重要。但一般来说，逻辑不能太绕，一是太绕了，会显得啰嗦，反而淹没了想要讲的核心问题；二是面对同领域的专家学者，很多道理不用多讲，其实最关注的也还是你的核心问题。<br>
 这次写本子一开始就像写学位论文一样，逻辑是这样的：</p>
