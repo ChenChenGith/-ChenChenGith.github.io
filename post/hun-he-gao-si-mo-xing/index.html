@@ -1,22 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://ChenChenGith.github.io</id>
-    <title>Chen Chen</title>
-    <updated>2021-03-10T13:07:47.194Z</updated>
-    <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://ChenChenGith.github.io"/>
-    <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
-    <subtitle>时代难免让人浮躁，沉得住气才能前行！</subtitle>
-    <logo>https://ChenChenGith.github.io/images/avatar.png</logo>
-    <icon>https://ChenChenGith.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, Chen Chen</rights>
-    <entry>
-        <title type="html"><![CDATA[高斯混合模型]]></title>
-        <id>https://ChenChenGith.github.io/post/hun-he-gao-si-mo-xing/</id>
-        <link href="https://ChenChenGith.github.io/post/hun-he-gao-si-mo-xing/">
-        </link>
-        <updated>2021-03-10T11:42:07.000Z</updated>
-        <content type="html"><![CDATA[<p>高斯模型也叫正态分布，是常用的一种变量分布模型。</p>
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>高斯混合模型 | Chen Chen</title>
+<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1615381663923">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="高斯混合模型 | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="高斯模型也叫正态分布，是常用的一种变量分布模型。
+单高斯模型[1]
+二维高斯分布的概率密度函数为：
+f(x)=12πσexp(−(x−μ)22σ2)f(x)=\frac{1}{\sqrt{2\pi\sigma}}exp(-\frac{(x-..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://ChenChenGith.github.io">
+  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1615381663923" alt="">
+  </a>
+  <h1 class="site-title">
+    Chen Chen
+  </h1>
+  <p class="site-description">
+    时代难免让人浮躁，沉得住气才能前行！
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              高斯混合模型
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-10
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>高斯模型也叫正态分布，是常用的一种变量分布模型。</p>
 <h1 id="单高斯模型1">单高斯模型[<a href="https://blog.csdn.net/Andy_shenzl/article/details/108076056">1</a>]</h1>
 <p>二维高斯分布的概率密度函数为：</p>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><msqrt><mrow><mn>2</mn><mi>π</mi><mi>σ</mi></mrow></msqrt></mfrac><mi>e</mi><mi>x</mi><mi>p</mi><mo>(</mo><mo>−</mo><mfrac><mrow><mo>(</mo><mi>x</mi><mo>−</mo><mi>μ</mi><msup><mo>)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo>)</mo></mrow><annotation encoding="application/x-tex">f(x)=\frac{1}{\sqrt{2\pi\sigma}}exp(-\frac{(x-\mu)^2}{2\sigma^2})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.6469199999999997em;vertical-align:-0.5379999999999999em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.5510085em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord sqrt mtight"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.912845em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mtight" style="padding-left:0.833em;"><span class="mord mtight">2</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">π</span><span class="mord mathdefault mtight" style="margin-right:0.03588em;">σ</span></span></span><span style="top:-2.872845em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail mtight" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
@@ -72,130 +147,81 @@ plt.show()
 <li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>α</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">\alpha_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>是混合权重，满足<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>⩽</mo><msub><mi>α</mi><mi>k</mi></msub><mo>⩽</mo><mn>1</mn><mo separator="true">,</mo><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></msubsup><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">0\leqslant\alpha_k\leqslant 1, \sum^K_{k=1}=1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.78111em;vertical-align:-0.13667em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.78667em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel amsrm">⩽</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2809409999999999em;vertical-align:-0.29971000000000003em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
 <li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>N</mi><mo>(</mo><msub><mi>μ</mi><mi>k</mi></msub><mo separator="true">,</mo><msub><mi mathvariant="normal">Σ</mi><mi>k</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">N(\mu_k,\Sigma_k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>是第<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>个单高斯模型的分布</li>
 </ul>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【生活随笔】基金啊基金]]></title>
-        <id>https://ChenChenGith.github.io/post/sheng-huo-sui-bi-ji-jin-a-ji-jin/</id>
-        <link href="https://ChenChenGith.github.io/post/sheng-huo-sui-bi-ji-jin-a-ji-jin/">
-        </link>
-        <updated>2021-03-01T11:22:45.000Z</updated>
-        <content type="html"><![CDATA[<p>上周六李老师又看了一遍基金。唉，提出了一些问题，改了两天，越改越迷茫：到底啥是科学问题？写到什么程度才算把科学问题写透了？</p>
-<p>越来越没有信心了，之前应该是想的比较清楚了的，但是还是不够清楚，也许我不能这么想，就是因为没有做，所以不够清楚，这是必然的。明天再改吧，换换脑子。</p>
-<p>到底能不能做出东西来？这也是另外一个很焦虑的问题，也许我真的是太着急了。<br>
-路上和文宇说：科研就像打比赛一样，赢得越多与有信心，气势如虹，一路向前。如果一开始就很多次失败，真的是很难再打回去了。虽然说，不要害怕失败，要坚持，但一次次的负反馈要有多大的坚毅才能不动摇呢？</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【科研随笔】基金写作心得]]></title>
-        <id>https://ChenChenGith.github.io/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/</id>
-        <link href="https://ChenChenGith.github.io/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/">
-        </link>
-        <updated>2021-02-23T09:35:09.000Z</updated>
-        <summary type="html"><![CDATA[<p>【<font color=gray>施工中...</font>】</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>【<font color=gray>施工中...</font>】</p>
-<!-- more -->
-<p>年前在写本子，年后又大改本子。在写和改的过程中，有一些心得总结一下。</p>
-<h3 id="引言直面问题">引言：直面问题</h3>
-<p>不论是基金还是论文，逻辑很重要。但一般来说，逻辑不能太绕，一是太绕了，会显得啰嗦，反而淹没了想要讲的核心问题；二是面对同领域的专家学者，很多道理不用多讲，其实最关注的也还是你的核心问题。</p>
-<p>这次写本子一开始就像写学位论文一样，逻辑是这样的：</p>
-<ul>
-<li>自动驾驶重要性（一段）</li>
-<li>驾驶安全重要性（一段）</li>
-<li>风险评估与自动驾驶决策（一句）+ 风险评估重要性（一段）</li>
-<li>风险评估问题（一段）</li>
-<li>综上...</li>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E5%8D%95%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B1">单高斯模型[[1]]</a></li>
+<li><a href="#%E6%B7%B7%E5%90%88%E9%AB%98%E6%96%AF%E6%A8%A1%E5%9E%8B">混合高斯模型</a></li>
 </ul>
-<p>可以看到，当说到问题的时候，已经是一页之后了，别人一眼看不到你的科学问题，就会迟迟进入不了阅读状态，所以说引言一定是要直面问题的。更改之后现状变成这样：</p>
-<ul>
-<li>自动驾驶重要性（宏观一段）</li>
-<li>风险评估重要性（一句）+ 风险评估问题（与上句同一段）</li>
-<li>综上...</li>
-</ul>
-<p>专家阅读的时候就会：第一段很快过，第二段首先把握了具体方向，接着马上就是具体问题解析，然后最后一段说明要做什么，很清晰，不绕，直接陈述就是最好的表达。</p>
-<h3 id="文献综述直达本质">文献综述：直达本质</h3>
-<h4 id="关于文献的描述">关于文献的描述</h4>
-<p>其实我一直认为我的文献综述水平是不行的，包括博士论文中的文献综述，有拼凑嫌疑。<br>
-文献综述应该是对现有文献思路、脉络的一个总结，简单一点来讲，就是把文献聚类，可以按照时间、方法等维度。看似简单，但也很容易写不清楚。这次写作李老师提了一个关键点：就是到底现在这些研究，在本质上是什么不同；这种不同就会分为几类；那么你的工作，是属于哪个类别，这样才能总结出本质问题。</p>
-<p>以轨迹预测举例，第一版本是这么写的：</p>
-<ul>
-<li>当前研究根据方法可以分为三类：基于物理约束的预测、基于行为意图的预测、基于学习的预测</li>
-<li>每一类bala bala....</li>
-</ul>
-<p>这样也不是不可以，但就会让人很迷惑：这几种方法到底有啥差别？优劣是什么？第一时间看不出来。之后修改为：</p>
-<ul>
-<li>轨迹预测基本任务是根据环境信息判断未来可能坐标点序列，当前研究根据对环境信息的使用程度，可分为三类：基于单车信息的递推、考虑道路拓扑的预测、考虑道路拓扑及周车交互的预测</li>
-<li>每一类bala bala...</li>
-</ul>
-<p>实际上，改了之后的三类和第一版本的三类是一样的，但就能直接指出到底差别在哪里，以及我的研究是在哪个层面上做的。</p>
-<h4 id="关于研究现状总结">关于研究现状总结</h4>
-<p>一般来讲，文献综述的总结会对应到整个本子要解决的几个问题上，也是为了后边的研究内容做衔接和准备。但在本次的基金撰写中，最后发现如果硬要在某个点上总结出一条不足来，有点勉强，因为在另一点的综述也会涉及到相关的内容。最后就需要做进一步的总结，而不能硬是把每个综述的点就要对应某个问题。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【生活随笔】博后半年小结]]></title>
-        <id>https://ChenChenGith.github.io/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/</id>
-        <link href="https://ChenChenGith.github.io/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/">
-        </link>
-        <updated>2021-02-21T10:20:11.000Z</updated>
-        <content type="html"><![CDATA[<p>来到清华已经过去了半年，本来应该是在春节前总结最为合适，但因为一直忙着写基金本子，一直拖到了年后来。<br>
-如果用几个关键词来总结这半年的感觉，应该是：激动，习惯，挣扎。</p>
-<h3 id="0️⃣激动的新奇">0️⃣激动的新奇</h3>
-<p>“清华大学，这是清华大学”，没错，这是在开始的一个月心里最多的想法。我是从来没有一天能想到我与清华之间能有什么关系：除了大二的时候参加大物竞赛来清华参加过一次考试。毕竟是国内的第一学府，即使是在博后面试的时候，我也不抱太大希望，这可是清华！但在我真的从深圳又再一次回到北京的时候，特别是站在清华大学门口的时候，激动是真的，不论以后会如何，至少我来到过了某个全国的顶峰。</p>
-<h3 id="1️⃣开始的打击">1️⃣开始的打击</h3>
-<p>从原来的交通运输到车辆运载，起始算是换了方向的，而且是从一个较“软”的学科换到了一个比较“硬”的学科。所以从一开始就心里压力就比较大，因为不知道能不能做的好。事实也证明，在刚刚开始的3个月，每次开组会我都很懵：组会PPT上讲的内容都是算法、公式，还没有什么注释，很硬核。这在之前的学生生涯中基本没有见到过，而且组里的学生和老师还讨论的很热烈，仿佛可以把公式转化成文字一样，可以想象到我是多么的迷惑，不知所措，就像刘姥姥进了大观园。也可以想象到心里是会受多大的打击：这就是我未来可能要接触的东西？我能不能在有限的时间内学会？是真的越来越没有信心了。</p>
-<h3 id="2️⃣新的科研逻辑">2️⃣新的科研逻辑</h3>
-<p>其实到现在我也不能断言这是学校之间的差别，还是学科之间的差别，也可能是两者兼有。<br>
-从学生角度，之前的逻辑是保研，最好能直博，然后按时毕业，大家恨不得赶快拿到博士学位就出去工作。但这边的话反而直博是次优选择：大家都是以通过硕士阶段作为跳板，然后申请国外更好大学的博士。博士也不急着毕业，发一发论文，有一些成果之后，申请更好学校的博后，然后再回到清华或者其他学校开展工作。完全不同的境况导致完全不同的逻辑，不亲眼来看看，是无法想象到的。<br>
-从科研角度，更强调科学性了。当然，这大部分原因是因为学科不同，这边是真的“硬”，直达问题本质，相对而言，交通运输可能更偏向于管理，管理一旦与人打交道，就有很多不可控的因素了。这引起的另外一个不同就是科研和项目的拆分，研究问题就是研究问题，项目就仅仅是项目，将研究问题套一个应用的壳子就完成项目就好了，这是到底技术主导、还是项目主导的问题了。交通运输没有什么硬技术，所以就要靠项目来拿数据、拿应用，否则很多方法提出来，也没有办法验证。</p>
-<h3 id="3️⃣慢慢的习惯">3️⃣慢慢的习惯</h3>
-<p>刚入站的时候，感觉很紧迫，两年时间，要发至少发两篇论文，计算着时间，很着急。但是现在也知道，着急不来——除非水论文，但我又不想水。开始慢慢学习机器学习、强化学习的一些方法，开组会看ppt也开始能看懂了，至少知道解决了什么问题，什么逻辑，什么方法。虽然还没有到能提出质疑的地方，至少组会也能有所收获了。<br>
-半年最大的工作成果就是完成了自动驾驶仿真软件中安全性评价模块的开发，仔细来讲，绝对算不上是一项科研内容，但至少是一项工作。还有就是投了一个安全评价的专利，也指望不上什么，少则3年，多则4年才能完全授权。<br>
-还有就是项目方面，算是负责两个项目，但实际上也只是帮忙把控一下进展，具体的事情还是由学生来做的。</p>
-<h3 id="4️⃣基金的挣扎">4️⃣基金的挣扎</h3>
-<p>每年的寒假都是写基金的时候，既然投身到了学术界，就不可避免。年前憋了一个月，终于算是憋出了一个格式完整的本子来。给了赵老师看，李老师看，都反应没写透。两位老师都说，写本子是要50%做过的东西，加上50%要做的东西，这样才能知道哪些科学问题是要确实解决的，到底要怎么做。我也很认同，但确实还做不到。从博士的驾驶行为安全到车辆的行驶安全，看似类似，但是对象、方法、目标、数据支持都变了，其实就是换方向了。李老师说，要坚持到一个点上不动摇，但实际上我实际上已经换了方向了。所以写本子就很挣扎：我知道写的不好，但我也不知道怎么才能写得好。就仿佛我和目标之间有一层纱，我大概能看到它长什么样，但我不知道要怎么才能拂开这层纱。写本子也是一样，只能写到大概要做啥，但是具体的技术难点、解决办法很虚浮。<br>
-不过也是有收获的。确实，写本子是很考验水平的事情，我现在还没有什么水平，但是至少也通过写本子，把要做的事情明确了一层，至少接下来的一年，我知道要做什么事情，达成什么效果了。所以再难，本子也要写。</p>
-<h3 id="5️⃣未来的展望">5️⃣未来的展望</h3>
-<p>本来2年的时间很紧张，去掉适应和找工作各半年，就剩下一年了。但现在看来，做满二站四年也不是没有可能，还是想做出一些东西来的。至少接下来的一年，知道要做什么，就好好做就好了，希望能有一些成果出来。<br>
-加油！</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[【未完成】自动驾驶数据集-Argoverse Dataset-Map&Forecasting-简介]]></title>
-        <id>https://ChenChenGith.github.io/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/</id>
-        <link href="https://ChenChenGith.github.io/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/">
-        </link>
-        <updated>2021-02-10T11:08:57.000Z</updated>
-        <content type="html"><![CDATA[<p>Argoverse数据集是由Argo AI、卡内基梅隆大学、佐治亚理工学院发布的用于支持自动驾驶汽车3D Tracking和Motion Forecasting研究的数据集。本篇博客主要对其中的HD Map和Motion Forecasting 数据集进行简介。</p>
-<blockquote>
-<p>数据集地址：https://www.argoverse.org/data.html<br>
-API接口：https://github.com/argoai/argoverse-api</p>
-</blockquote>
-<h1 id="数据采集">🗜数据采集</h1>
-<p>Argoverse数据集均由Argo AI公司的自动驾驶测试车采集，主要包括两个城市：迈阿密和匹兹堡。迈阿密包覆盖204Km道路，匹兹堡覆盖86Km道路。<br>
-MIA：<br>
-<img src="https://ChenChenGith.github.io/post-images/1612961497763.png" alt="" loading="lazy"><br>
-PET：<br>
-<img src="https://ChenChenGith.github.io/post-images/1612961016174.png" alt="" loading="lazy"></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[Hello World]]></title>
-        <id>https://ChenChenGith.github.io/post/hello-world/</id>
-        <link href="https://ChenChenGith.github.io/post/hello-world/">
-        </link>
-        <updated>2021-02-04T02:25:47.000Z</updated>
-        <content type="html"><![CDATA[<p>Hello World！<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="bold">x</mtext><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></msubsup><mo>(</mo><mi mathvariant="script">Z</mi><mi>γ</mi><mi>V</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">\textbf{x}=\Sigma_{i=1}^{N}(\mathcal{Z} \gamma V(s))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textbf">x</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0999949999999998em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathcal" style="margin-right:0.07944em;">Z</span></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">≠</mi></mrow><annotation encoding="application/x-tex">\neq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span></span></span></span><br>
-<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∫</mo><mn>1</mn><mn>2</mn></msubsup><mi mathvariant="normal">和</mi><msubsup><mo>∑</mo><mn>2</mn><mn>1</mn></msubsup></mrow><annotation encoding="application/x-tex">\int_{1}^{2}和\sum_{2}^{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3648280000000002em;vertical-align:-0.35582em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0090080000000001em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35582em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">和</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span></span></span></span></p>
-<h1 id="标题1">标题1</h1>
-<h2 id="二级">二级</h2>
-<h3 id="三级">三级</h3>
-<h1 id="标题2">标题2</h1>
-<h2 id="2二级">2二级</h2>
-<h3 id="2三级">2三级</h3>
-<p>用于测试的一个开始</p>
-]]></content>
-    </entry>
-</feed>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://ChenChenGith.github.io/post/sheng-huo-sui-bi-ji-jin-a-ji-jin/">
+              <h3 class="post-title">
+                【生活随笔】基金啊基金
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  欢迎来到我的个人空间！
+  <a class="rss" href="https://ChenChenGith.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
