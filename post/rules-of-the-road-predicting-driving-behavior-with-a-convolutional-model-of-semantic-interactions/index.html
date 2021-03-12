@@ -1,0 +1,189 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>[论文阅读]Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions | Chen Chen</title>
+<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1615527937765">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="[论文阅读]Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="【来自Zoox公司】
+摘要
+解决实际复杂驾驶场景下的车辆未来状态预测问题。以往的研究是短时预测，没有充分利用3D感知数据和语义地图数据。这篇论文将语义信息使用统一的空间网格进行表征，从而可以使用深度卷积模型来融合场景信息。因此可以让对象和与..." />
+    <meta name="keywords" content="论文阅读" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://ChenChenGith.github.io">
+  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1615527937765" alt="">
+  </a>
+  <h1 class="site-title">
+    Chen Chen
+  </h1>
+  <p class="site-description">
+    时代难免让人浮躁，沉得住气才能前行！
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              [论文阅读]Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-03-12
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+                <a href="https://ChenChenGith.github.io/tag/CqRfwL1Qs/" class="post-tag">
+                  # 论文阅读
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>【来自Zoox公司】</p>
+<h1 id="摘要">摘要</h1>
+<p>解决实际复杂驾驶场景下的车辆未来状态预测问题。以往的研究是短时预测，没有充分利用3D感知数据和语义地图数据。这篇论文将语义信息使用统一的空间网格进行表征，从而可以使用深度卷积模型来融合场景信息。因此可以让对象和与其他对象及环境在每个时步进行交互。使用监督学习方法将未来的状态表征为分布。<br>
+<img src="https://ChenChenGith.github.io/post-images/1615522000423.png" alt="" loading="lazy"></p>
+<blockquote>
+<p><em>上图：俯视图下的状态预测任务。红色框为预测对象，其未来轨迹真值为粉色线段。亮蓝色线段是最可能的预测轨迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表示。环境中的其他语义信息使用不同的颜色展示，包括车道线、人行横道和停车线。</em></p>
+</blockquote>
+<h1 id="引言">引言</h1>
+<p>自动系统的关键是预测其他智能体的未来状态，但是由于其他智能体的意图无法观测，所以需要根据当前和过去的信息生成一个似然分布。<br>
+当前有很多感知方面的研究，但是在轨迹预测方面的研究却很少，可能有两个原因：1）工业上更看重如何从原始感知数据中提取对象的表征，而对状态的优先级比较低；2）很少有用于状态预测的实车开发数据集，因为轨迹预测需要在实车数据进行开发才有意义，才能应对真实环境下的随机性。<br>
+本文介绍一个数据丰富的车辆轨迹预测数据集，包括9659量车和83880个预测场景，共计173小时，包括88个物理区域，并提供语义地图信息。采用俯视图的空间网格化语义地图编码环境历史数据，因此可以使用深度卷积网络结构来进行建模。<br>
+本文的另一个重要贡献是<strong>直接预测未来的分布</strong>，而不是单独的坐标点。对驾驶规划来讲，表征多模态的随机性很关键，必须考虑车辆的轨迹的可能性，衡量碰撞的风险。<br>
+研究了多个参数化和非参数化输出的分布表示，结果显示效果很好，最高能够预测未来5s的轨迹。</p>
+<h1 id="文献综述">文献综述</h1>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E6%91%98%E8%A6%81">摘要</a></li>
+<li><a href="#%E5%BC%95%E8%A8%80">引言</a></li>
+<li><a href="#%E6%96%87%E7%8C%AE%E7%BB%BC%E8%BF%B0">文献综述</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://ChenChenGith.github.io/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/">
+              <h3 class="post-title">
+                MultiPath: Multiple probabilistic anchor trajectory hypotheses for behavior prediction
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  欢迎来到我的个人空间！
+  <a class="rss" href="https://ChenChenGith.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

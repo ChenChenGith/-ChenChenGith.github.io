@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-03-12T03:54:57.380Z</updated>
+    <updated>2021-03-12T05:45:41.743Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -10,6 +10,28 @@
     <logo>https://ChenChenGith.github.io/images/avatar.png</logo>
     <icon>https://ChenChenGith.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Chen Chen</rights>
+    <entry>
+        <title type="html"><![CDATA[[论文阅读]Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions]]></title>
+        <id>https://ChenChenGith.github.io/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/</id>
+        <link href="https://ChenChenGith.github.io/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/">
+        </link>
+        <updated>2021-03-12T03:55:00.000Z</updated>
+        <content type="html"><![CDATA[<p>【来自Zoox公司】</p>
+<h1 id="摘要">摘要</h1>
+<p>解决实际复杂驾驶场景下的车辆未来状态预测问题。以往的研究是短时预测，没有充分利用3D感知数据和语义地图数据。这篇论文将语义信息使用统一的空间网格进行表征，从而可以使用深度卷积模型来融合场景信息。因此可以让对象和与其他对象及环境在每个时步进行交互。使用监督学习方法将未来的状态表征为分布。<br>
+<img src="https://ChenChenGith.github.io/post-images/1615522000423.png" alt="" loading="lazy"></p>
+<blockquote>
+<p><em>上图：俯视图下的状态预测任务。红色框为预测对象，其未来轨迹真值为粉色线段。亮蓝色线段是最可能的预测轨迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表示。环境中的其他语义信息使用不同的颜色展示，包括车道线、人行横道和停车线。</em></p>
+</blockquote>
+<h1 id="引言">引言</h1>
+<p>自动系统的关键是预测其他智能体的未来状态，但是由于其他智能体的意图无法观测，所以需要根据当前和过去的信息生成一个似然分布。<br>
+当前有很多感知方面的研究，但是在轨迹预测方面的研究却很少，可能有两个原因：1）工业上更看重如何从原始感知数据中提取对象的表征，而对状态的优先级比较低；2）很少有用于状态预测的实车开发数据集，因为轨迹预测需要在实车数据进行开发才有意义，才能应对真实环境下的随机性。<br>
+本文介绍一个数据丰富的车辆轨迹预测数据集，包括9659量车和83880个预测场景，共计173小时，包括88个物理区域，并提供语义地图信息。采用俯视图的空间网格化语义地图编码环境历史数据，因此可以使用深度卷积网络结构来进行建模。<br>
+本文的另一个重要贡献是<strong>直接预测未来的分布</strong>，而不是单独的坐标点。对驾驶规划来讲，表征多模态的随机性很关键，必须考虑车辆的轨迹的可能性，衡量碰撞的风险。<br>
+研究了多个参数化和非参数化输出的分布表示，结果显示效果很好，最高能够预测未来5s的轨迹。</p>
+<h1 id="文献综述">文献综述</h1>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[MultiPath: Multiple probabilistic anchor trajectory hypotheses for behavior prediction]]></title>
         <id>https://ChenChenGith.github.io/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/</id>
