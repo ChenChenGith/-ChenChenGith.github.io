@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>【论文阅读】Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions | Chen Chen</title>
-<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1615539507888">
+<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1615867716975">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="【论文阅读】Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
@@ -23,7 +23,7 @@
       <div class="main-content">
         <div class="site-header">
   <a href="https://ChenChenGith.github.io">
-  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1615539507888" alt="">
+  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1615867716975" alt="">
   </a>
   <h1 class="site-title">
     Chen Chen
@@ -99,8 +99,7 @@
 <p>解决实际复杂驾驶场景下的车辆未来状态预测问题。以往的研究是短时预测，没有充分利用3D感知数据和语义地图数据。这篇论文将语义信息使用统一的空间网格进行表征，从而可以使用深度卷积模型来融合场景信息。因此可以让对象和与其他对象及环境在每个时步进行交互。使用监督学习方法将未来的状态表征为分布。<br>
 <img src="https://ChenChenGith.github.io/post-images/1615522000423.png" alt="框架" loading="lazy"></p>
 <blockquote>
-<p>*上图：俯视图下的状态预测任务。红色框为预测对象，其未来轨迹真值为粉色线段。亮蓝色线段是最可能的预测轨s](https://ChenChenGith.github.io/post-images/1615522000423.png)<br>
-<em>上图：俯视图下的状态预测任务。红色框为预测对象，其未来轨迹真值为粉色线段。亮蓝色线段是最可能的预测轨迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表示。环境中的其他语义信息使用不同的颜色展示，包括车道线、人行横道和停车线。</em></p>
+<p><em>上图：俯视图下的状态预测任务。红色框为预测对象，其未来轨迹真值为粉色线段。亮蓝色线段是最可能的预测轨迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表示。环境中的其他语义信息使用不同的颜色展示，包括车道线、人行横道和停车线。</em></p>
 </blockquote>
 <h1 id="引言">引言</h1>
 <p>自动系统的关键是预测其他智能体的未来状态，但是由于其他智能体的意图无法观测，所以需要根据当前和过去的信息生成一个似然分布。<br/><br>
