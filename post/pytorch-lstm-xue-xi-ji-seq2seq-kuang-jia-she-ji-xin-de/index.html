@@ -1,0 +1,294 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pytorch-LSTM学习心得 | Chen Chen</title>
+<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1620743534840">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Pytorch-LSTM学习心得 | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="近两个月的时间基本都是在与数据集和神经网络作斗争。至现在为止，终于算是在完成了数据规整和初步的LSTM-seq2seq网络的实现。并且开始维护了自己的代码项目
+在这里做一个阶段性的总结。
+
+Pytorch-LSTM
+LSTM的模型构建及输入..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://ChenChenGith.github.io">
+  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1620743534840" alt="">
+  </a>
+  <h1 class="site-title">
+    Chen Chen
+  </h1>
+  <p class="site-description">
+    时代难免让人浮躁，沉得住气才能前行！
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Pytorch-LSTM学习心得
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-05-11
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>近两个月的时间基本都是在与数据集和神经网络作斗争。至现在为止，终于算是在完成了数据规整和初步的LSTM-seq2seq网络的实现。并且开始维护了自己的<a href="https://github.com/ChenChenGith/argoverse-api-ccuse">代码项目</a></p>
+<p>在这里做一个阶段性的总结。</p>
+<!-- more -->
+<h1 id="pytorch-lstm">Pytorch-LSTM</h1>
+<h2 id="lstm的模型构建及输入输出格式">LSTM的模型构建及输入输出格式</h2>
+<blockquote>
+<p>考虑使用LSTM，或者说RNN的原因在于我所面临的数据长度是动态变化的，包括已知的车道中心线数量、长度，以及已知的自车和周车轨迹的数量和长度。而输入则是固定时域内的轨迹坐标。因此需要一个能够处理变长度输入的模型，因此选择RNN系列</p>
+</blockquote>
+<p>网络上有很多关于LSTM的模型构建，以及输入输出的参考。对于输入输出，我主要参考的包括：<br>
+<a href="https://blog.csdn.net/comli_cn/article/details/105275827">web_1</a>  &lt;-引用了Pytorch官网说明<br>
+<a href="https://zhuanlan.zhihu.com/p/79064602">web_2</a>  &lt;-其中的一个图很清晰的展示了输入输出<br>
+<a href="https://zhuanlan.zhihu.com/p/39191116">web_3</a>  &lt;-双向传播隐层下的输入输出</p>
+<p>其实刚刚开始看的时候，是很迷茫的。这与我自己比较差的数学功底（主要是线性代数）有关系，因此在开始的一段时间内并不能很好的理解所谓的input_size、hidden_size这些东西到底意味者什么，而我的input数据应该是何种shape才能够正确对应到这些网络参数。</p>
+<p>大多数的网站都使用默认的XX_size这类的单词来说明，从python的编程角度来看，很容理解为某个变量的shape，但实际上带有size的大多是一个int值，所以一开始很难理解这个size值到底是指张量的哪个维度。</p>
+<p>在不断地摸索过程中，我总结出一个规律，就是：<strong>所有的这些size大小指的都是数据或中间张量中最后一维向量的列数</strong>。而这里的最后一维，其实就是<strong>每一个独立数据点的特征向量</strong>。这是由于神经网络中都是线性变换，用到最多的就是矩阵乘法：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>W</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">A=WX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>，一个典型的感知器模型如下图所示：</p>
+<figure data-type="image" tabindex="1"><img src="https://ChenChenGith.github.io/post-images/1620738001306.png" alt="" loading="lazy"></figure>
+<p>假设输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>，即每条数据的有效特征数量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>个（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>维向量）；输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>的大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，即输出的每条数据特征数量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>个（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>维向量）；那么中间需要学习的权重矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>的大小就必需为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>m</mi><mo separator="true">,</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(m,n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。当前大多数神经网络中的权重矩阵都是定大小的，所以这也就是为什么在定义LSTM等网络参数时必需关心输入size和输出size，这两者就定义了权重矩阵的shape。</p>
+<p>而在做矩阵乘法的时候，除了最后一维外，其他的的维度是不变的，或者说与权重矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>无关的，所以就可以理解到，神经网络实际上每次变换都是针对最后一维（也就是特征向量）做变换的。</p>
+<p>由于这种传递性质，如果需要更改前边维度的大小，就必须采用其他的方法，比如使用torch.tensor带有的view()方法来对维度大小做变换，又或者类似句子翻译问题中，通过构建一个解码器，构造一个预定义的SOS向量，作为解码器初始输入来控制解码器输出的前两位维大小。</p>
+<p>有了以上的认知，那么再可以回过头来看一下LSTM的模型构建、输入输出格式。</p>
+<h3 id="模型构建">模型构建</h3>
+<p>Pytorch给出的LSTM模型构建方法为：</p>
+<pre><code class="language-python">net = nn.LSTM(input_size=3, hidden_size=10, num_layers=1, batch_first=True)
+</code></pre>
+<p>根据上表的理解：这个LSTM模型：</p>
+<ul>
+<li><strong>input_size</strong>：每一次输入（即针对每一个数据点）接收数据张量最后一维应该为3，即输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>的大小应该为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mn>3</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span>；</li>
+<li><strong>hidden_size</strong>： 隐藏层的向量大小为10，也就是说，对每一次输入的数据使用权重矩阵向第一个隐藏层映射，得到一个大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mn>10</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,10)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>的张量，那么很容易理解，这里的权重矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>的大小应该为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>3</mn><mo separator="true">,</mo><mn>10</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(3,10)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>；</li>
+<li><strong>num_layers</strong>： 表示有几个隐藏层，目前理解LSTM中2个隐藏层的size大小是一样的，也就是说，如果隐藏层数设置为2，那么对应的两个隐藏层之间的权重矩阵大小就应该为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mn>10</mn><mo separator="true">,</mo><mn>10</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(10,10)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mclose">)</span></span></span></span>；</li>
+<li><strong>batch_first</strong>：与输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>的前两个维度有关，之后在说明输入、输出格式的时候会提及它的影响。</li>
+</ul>
+<p>有了以上的理解，那么就可以知道：符合这个模型的输入数据input_data张量的大小应该为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mn>3</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span>。</p>
+<p>在进入模型输入输出说明前，借用<a href="https://zhuanlan.zhihu.com/p/79064602">web_2</a>中的一张图片来进行预先展实，后续可以对照此图片理解。<br>
+<img src="https://ChenChenGith.github.io/post-images/1620741660201.jpg" alt="" loading="lazy"></p>
+<h3 id="模型输入">模型输入</h3>
+<p>Pytorch给出的输入格式为：</p>
+<pre><code class="language-python">inputs: input, (h_0, c_0)
+
+input: shape(seq_len, batch, input_size)
+h_0: shape(num_layer*num_directions, batch, hidden_size)
+c_0: shape(num_layer*num_directions, batch, hidden_size)
+</code></pre>
+<h4 id="input的大小">input的大小</h4>
+<ul>
+<li><strong>input_size</strong>：为3，这是建立模型的时候决定的。对于一个句子翻译问题，一个数据点就是一个字，input_size=3就是说明打算用一个3维向量[a,b,c]来表示一个字；</li>
+<li><strong>seq_len</strong>： 每个batch输入多少数据。比较难理解。换一个说法就是，每条数据包含多少个数据点。对于一个句子翻译问题，就是一个句子包括多少个字。这里需要注意的是，因为tensor都是齐整的，不像list中对于每一个子向量可以允许不同长度，甚至不同类型的子内容。这里的seq_len就规定了输入张量的句子长度大小。这明显很我们的需求不符：因为句子长度是变化的。因此在实际使用中需要使用torch的rnn中提供的三个函数来将不等长的输入转换为等长输入，这一部分内容会在后边讨论。</li>
+<li><strong>batch</strong>：表示有几个batch。对于一个句子翻译问题，就是一次性输入几个句子放到模型中做训练。</li>
+</ul>
+<h4 id="h_0和c_0的大小">h_0和c_0的大小</h4>
+<ul>
+<li><strong>num_directions</strong>：建立模型时没有设置bidirectional参数，默认为False，那么num_directions=1，即当向传播的隐藏层（正向）。如果bidirectional=True，就是双向隐藏层（正向+逆向）。需要注意的是，如果建立模型时num_layer&gt;1，在LSTM中隐藏层的叠加顺序是：（正向1-&gt;逆向1）-&gt; （正向2-&gt;逆向2）-&gt; ...。所以这也就解释了为什么h_0的大小有一个维度是num_layer*num_direction；</li>
+<li><strong>batch</strong>：与模型构建相同，因为h_0和c_0是模型中间变量的初始值，所以对应于每一个batch，比如说每一个句子，都有对应的h_0和c_0，因为虽然权重<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>在各个时刻是共享的，但是因为句子输入不同，所以必然中间变量也必然不同。</li>
+<li><strong>hidden_size</strong>：与模型构建相同，这里不过多解释，具体可以看上图来理解。</li>
+</ul>
+<p>c_0大小和h_0大小相同。这两个都是中间变量，具体的差异需要去学习LSTM内部模型细节，在此不再赘述。</p>
+<p>至此，LSTM模型的输入就很直观了。</p>
+<p>最后差一个<strong>batch_first</strong>参数的说明：可以看到，按照Pytorch给出的定义，input张量大小为(seq_len, batch, input_size)，而若在模型建立时设置batch_first=True，那么input张量的大小对应就应该为(batch, seq_len, input_size)。具体缘由与torch底层对LSTM做并行训练需求有关，不展开讨论了。</p>
+<h3 id="模型输出">模型输出</h3>
+<p>Pytorch给出的输出格式为：</p>
+<pre><code class="language-python">outputs: output, (h_n, c_n)
+
+output: shape(seq_len, batch, num_directions*hidden_size)
+h_0: shape(num_layer*num_directions, batch, hidden_size)
+c_0: shape(num_layer*num_directions, batch, hidden_size)
+</code></pre>
+<h4 id="output的大小">output的大小</h4>
+<p>output是最后一个隐藏层在<strong>所有时间点</strong>的输出，所以它的大小必然与输入的batch数量（句子数）和每个batch大小（句子长度）有关，也就是seq_len和batch，它们的含义已经在输入中说明了，此处不再赘述。需要注意的是最后一维：num_directions*hidden_size。可以看到如果不采用双向隐藏层，最后一维就是hidden_size，也就是模型构建中的参数值。如果使用双向，只不过就是输出了两层的变量而已。</p>
+<h4 id="h_n和c_n的大小">h_n和c_n的大小</h4>
+<p>h_n和c_n实际上是由h_0和c_0在每个时间点上迭代获得的最终时刻的中间变量，所以它们的大小与h_0和c_0是一样的，在此也不再赘述。</p>
+<p>最后是<strong>batch_first</strong>参数的说明：这个参数会影响输入input的大小，但却不会影响输出的大小。</p>
+<h2 id="处理不等长输入">处理不等长输入</h2>
+<p>待更新：</p>
+<ul>
+<li>torch.nn.utils.rnn.pad_sequence()</li>
+<li>torch.nn.utils.rnn.pack_padded_sequence()</li>
+<li>torch.nn.utils.rnn.pad_packed_sequence()</li>
+</ul>
+<h2 id="pytorch框架下多个模叠加">Pytorch框架下多个模叠加</h2>
+<h3 id="模型叠加">模型叠加</h3>
+<p>待更新：</p>
+<ul>
+<li><strong>init</strong></li>
+<li><strong>forward</strong></li>
+<li>tersor操作下的自动梯度</li>
+</ul>
+<h3 id="seq2seq框架设计">Seq2seq框架设计</h3>
+<p>待更新：</p>
+<ul>
+<li>多对一（N2one）</li>
+<li>多对多（N2N）</li>
+<li>多对多（N2M）</li>
+</ul>
+<h2 id="自定义dataloader">自定义Dataloader</h2>
+<h2 id=""></h2>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#pytorch-lstm">Pytorch-LSTM</a>
+<ul>
+<li><a href="#lstm%E7%9A%84%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA%E5%8F%8A%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F">LSTM的模型构建及输入输出格式</a>
+<ul>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E6%9E%84%E5%BB%BA">模型构建</a></li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%85%A5">模型输入</a>
+<ul>
+<li><a href="#input%E7%9A%84%E5%A4%A7%E5%B0%8F">input的大小</a></li>
+<li><a href="#h_0%E5%92%8Cc_0%E7%9A%84%E5%A4%A7%E5%B0%8F">h_0和c_0的大小</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E8%BE%93%E5%87%BA">模型输出</a>
+<ul>
+<li><a href="#output%E7%9A%84%E5%A4%A7%E5%B0%8F">output的大小</a></li>
+<li><a href="#h_n%E5%92%8Cc_n%E7%9A%84%E5%A4%A7%E5%B0%8F">h_n和c_n的大小</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%A4%84%E7%90%86%E4%B8%8D%E7%AD%89%E9%95%BF%E8%BE%93%E5%85%A5">处理不等长输入</a></li>
+<li><a href="#pytorch%E6%A1%86%E6%9E%B6%E4%B8%8B%E5%A4%9A%E4%B8%AA%E6%A8%A1%E5%8F%A0%E5%8A%A0">Pytorch框架下多个模叠加</a>
+<ul>
+<li><a href="#%E6%A8%A1%E5%9E%8B%E5%8F%A0%E5%8A%A0">模型叠加</a></li>
+<li><a href="#seq2seq%E6%A1%86%E6%9E%B6%E8%AE%BE%E8%AE%A1">Seq2seq框架设计</a></li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89dataloader">自定义Dataloader</a></li>
+<li></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://ChenChenGith.github.io/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/">
+              <h3 class="post-title">
+                【论文阅读】Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  欢迎来到我的个人空间！
+  <a class="rss" href="https://ChenChenGith.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
