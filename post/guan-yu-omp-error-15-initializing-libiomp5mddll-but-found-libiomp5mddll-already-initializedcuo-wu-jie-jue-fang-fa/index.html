@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法 | Chen Chen</title>
-<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1620790764974">
+<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1620790935279">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法 | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
@@ -23,7 +23,7 @@ OMP: Hi..." />
       <div class="main-content">
         <div class="site-header">
   <a href="https://ChenChenGith.github.io">
-  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1620790764974" alt="">
+  <img class="avatar" src="https://ChenChenGith.github.io/images/avatar.png?v=1620790935279" alt="">
   </a>
   <h1 class="site-title">
     Chen Chen
@@ -104,11 +104,11 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
 <p>本问题出现主要是因为torch包中包含了名为libiomp5md.dll的文件，与Anaconda环境中的同一个文件出现了某种冲突，所以需要删除一个。</p>
 <p>在Anaconda文件夹下搜索，如下图，删除Anaconda包中libiomp5md.dll这个文件，即下图所选定的那个。<br>
 <img src="https://ChenChenGith.github.io/post-images/1620790594180.png" alt="" loading="lazy"><br>
-但如果是在某个python环境下，则需要删除的是改环境下的对应文件。</p>
+但如果是在某个python环境下，则需要删除的是该环境下的对应文件。</p>
 <p>也就是：</p>
 <ul>
 <li>如果在Anaconda的base环境下：删除*..\Anaconda3\Library\bin\libiomp5md.dll*</li>
-<li>如果实在某个env(例如名为work)下：删除*..\Anaconda3\envs\work\Library\bin\libiomp5md.dll*</li>
+<li>如果在某个env(例如名为work)下：删除*..\Anaconda3\envs\work\Library\bin\libiomp5md.dll*</li>
 </ul>
 
               </div>
