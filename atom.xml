@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-05-12T01:39:51.568Z</updated>
+    <updated>2021-05-12T01:41:22.912Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2021, Chen Chen</rights>
     <entry>
         <title type="html"><![CDATA[Pytorch-LSTM学习心得]]></title>
-        <id>https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-ji-seq2seq-kuang-jia-she-ji-xin-de/</id>
-        <link href="https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-ji-seq2seq-kuang-jia-she-ji-xin-de/">
+        <id>https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-xin-de/</id>
+        <link href="https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-xin-de/">
         </link>
         <updated>2021-05-11T09:54:41.000Z</updated>
         <summary type="html"><![CDATA[<p>近两个月的时间基本都是在与数据集和神经网络作斗争。至现在为止，终于算是在完成了数据规整和初步的LSTM-seq2seq网络的实现。并且开始维护了自己的<a href="https://github.com/ChenChenGith/argoverse-api-ccuse">代码项目</a></p>
