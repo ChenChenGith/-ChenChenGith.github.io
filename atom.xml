@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-05-28T07:12:20.666Z</updated>
+    <updated>2021-05-28T07:14:53.356Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -36,6 +36,7 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
 <li>如果在Anaconda的base环境下：删除*..\Anaconda3\Library\bin\libiomp5md.dll*</li>
 <li>如果在某个env(例如名为work)下：删除*..\Anaconda3\envs\work\Library\bin\libiomp5md.dll*</li>
 </ul>
+<p>问题解决</p>
 ]]></content>
     </entry>
     <entry>
