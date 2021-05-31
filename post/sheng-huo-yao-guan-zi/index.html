@@ -2,18 +2,17 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法 | Chen Chen</title>
+<title>【生活】药罐子 | Chen Chen</title>
 <link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1622425012299">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法 | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="【生活】药罐子 | Chen Chen - Atom Feed" href="https://ChenChenGith.github.io/atom.xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="在一次Pycharm下debug时，报错：
-OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.
-OMP: Hi..." />
+    <meta name="description" content="人到中年，成为药罐子是不可避免地，但成为药罐子这件事确是自己一手造成的。
+" />
     <meta name="keywords" content="" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
     <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
@@ -76,41 +75,21 @@ OMP: Hi..." />
         <div class="post-detail">
           <article class="post">
             <h2 class="post-title">
-              关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法
+              【生活】药罐子
             </h2>
             <div class="post-info">
               <span>
-                2021-05-12
+                2021-05-31
               </span>
               <span>
-                2 min read
+                1 min read
               </span>
               
             </div>
             
             <div class="post-content-wrapper">
               <div class="post-content">
-                <p>在一次Pycharm下debug时，报错：</p>
-<pre><code class="language-python">OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.
-OMP: Hint This means that multiple copies of the OpenMP runtime have been linked into the program. That is dangerous, since it can degrade performance or cause incorrect results. The best thing to do is to ensure that only a single OpenMP runtime is linked into the process, e.g. by avoiding static linking of the OpenMP runtime in any library. As an unsafe, unsupported, undocumented workaround you can set the environment variable KMP_DUPLICATE_LIB_OK=TRUE to allow the program to continue to execute, but that may cause crashes or silently produce incorrect results. For more information, please see http://www.intel.com/software/products/support/.
-Process finished with exit code 3
-</code></pre>
-<p>网上查找相关解决方案，一般采用以下方式：</p>
-<pre><code class="language-python">import os
-os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
-</code></pre>
-<p>但是这种方式治表不治里，在下一个项目运行中还有可能出行同样的问题。<br>
-搜索后看到<a href="https://blog.csdn.net/Victor_X/article/details/110082033?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control">web1</a>和<a href="https://www.cnblogs.com/Flat-White/p/14678858.html">web2</a>提供了一种根本性解决问题的方法。</p>
-<p>本问题出现主要是因为torch包中包含了名为libiomp5md.dll的文件，与Anaconda环境中的同一个文件出现了某种冲突，所以需要删除一个。</p>
-<p>在Anaconda文件夹下搜索，如下图，删除Anaconda包中libiomp5md.dll这个文件，即下图所选定的那个。<br>
-<img src="https://ChenChenGith.github.io/post-images/1620790594180.png" alt="" loading="lazy"><br>
-但如果是在某个python环境下，则需要删除的是该环境下的对应文件。</p>
-<p>也就是：</p>
-<ul>
-<li>如果在Anaconda的base环境下：删除*..\Anaconda3\Library\bin\libiomp5md.dll*</li>
-<li>如果在某个env(例如名为work)下：删除*..\Anaconda3\envs\work\Library\bin\libiomp5md.dll*</li>
-</ul>
-<p>问题解决</p>
+                <p>人到中年，成为药罐子是不可避免地，但成为药罐子这件事确是自己一手造成的。</p>
 
               </div>
               <div class="toc-container">
@@ -123,9 +102,9 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
         
           <div class="next-post">
             <div class="next">下一篇</div>
-            <a href="https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-xin-de/">
+            <a href="https://ChenChenGith.github.io/post/guan-yu-omp-error-15-initializing-libiomp5mddll-but-found-libiomp5mddll-already-initializedcuo-wu-jie-jue-fang-fa/">
               <h3 class="post-title">
-                Pytorch-LSTM学习心得
+                关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法
               </h3>
             </a>
           </div>
