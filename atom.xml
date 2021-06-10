@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-05-31T09:33:32.164Z</updated>
+    <updated>2021-06-10T10:11:52.873Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -10,21 +10,6 @@
     <logo>https://ChenChenGith.github.io/images/avatar.png</logo>
     <icon>https://ChenChenGith.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Chen Chen</rights>
-    <entry>
-        <title type="html"><![CDATA[【生活】药罐子]]></title>
-        <id>https://ChenChenGith.github.io/post/sheng-huo-yao-guan-zi/</id>
-        <link href="https://ChenChenGith.github.io/post/sheng-huo-yao-guan-zi/">
-        </link>
-        <updated>2021-05-31T01:35:58.000Z</updated>
-        <summary type="html"><![CDATA[<p>人到中年，成为药罐子是不可避免地，但成为药罐子这件事确是自己一手造成的。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>人到中年，成为药罐子是不可避免地，但成为药罐子这件事确是自己一手造成的。</p>
-<!-- more -->
-<p><strong>一</strong><br>
-说到底，我并不是一个具有坚强毅力的人。然而历史经验表明，一个人想要做成事情最必不可少的品质恰好就是坚毅，甚至是决定性的品质。<br>
-但坚毅这件事，再仔细想一下，那便是所谓“兴趣”的事情。正是因为能够找到兴趣</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法]]></title>
         <id>https://ChenChenGith.github.io/post/guan-yu-omp-error-15-initializing-libiomp5mddll-but-found-libiomp5mddll-already-initializedcuo-wu-jie-jue-fang-fa/</id>
@@ -541,15 +526,257 @@ plt.show()
         <updated>2021-02-10T11:08:57.000Z</updated>
         <content type="html"><![CDATA[<p>Argoverse数据集是由Argo AI、卡内基梅隆大学、佐治亚理工学院发布的用于支持自动驾驶汽车3D Tracking和Motion Forecasting研究的数据集。本篇博客主要对其中的HD Map和Motion Forecasting 数据集进行简介。</p>
 <blockquote>
-<p>数据集地址：https://www.argoverse.org/data.html<br>
-API接口：https://github.com/argoai/argoverse-api</p>
+<p><a href="https://www.argoverse.org/data.html">数据集地址</a><br>
+<a href="https://github.com/argoai/argoverse-api">API接口</a><br>
+<a href="extension://oikmahiipjniocckomdccmplodldodja/pdf-viewer/web/viewer.html?file=https%3A%2F%2Fopenaccess.thecvf.com%2Fcontent_CVPR_2019%2Fpapers%2FChang_Argoverse_3D_Tracking_and_Forecasting_With_Rich_Maps_CVPR_2019_paper.pdf#=&amp;zoom=180">CVPR 2019论文</a></p>
 </blockquote>
-<h1 id="数据采集">🗜数据采集</h1>
-<p>Argoverse数据集均由Argo AI公司的自动驾驶测试车采集，主要包括两个城市：迈阿密和匹兹堡。迈阿密包覆盖204Km道路，匹兹堡覆盖86Km道路。<br>
-MIA：<br>
-<img src="https://ChenChenGith.github.io/post-images/1612961497763.png" alt="" loading="lazy"><br>
-PET：<br>
-<img src="https://ChenChenGith.github.io/post-images/1612961016174.png" alt="" loading="lazy"></p>
+<h1 id="数据采集">数据采集</h1>
+<p>Argoverse数据集均由Argo AI公司的自动驾驶测试车采集，主要包括两个城市：迈阿密（MIA）和匹兹堡（PIT）。迈阿密包覆盖204Km道路，匹兹堡覆盖86Km道路。<br>
+数据采集设备包括：</p>
+<ul>
+<li>2个VLP-32激光雷达，检测范围200m</li>
+<li>7个高分辨率（1920*1200）环形摄像头，30Hz，提供360度视野</li>
+<li>2个前向立体相机，分辨率2056*2464，5Hz</li>
+<li>6自由度定位数据</li>
+</ul>
+<h1 id="地图">地图</h1>
+<p>Argoverse数据集包含由3个地图：</p>
+<ul>
+<li>矢量地图，由车道中心线和相关属性组成</li>
+<li>栅格化地图，包括地面高度信息</li>
+<li>栅格化地图，包括可行驶区域和兴趣点区域<br>
+矢量地图基本组成是车道段，每个车道段都只有一个行进方向。每个车道段属性包括：</li>
+<li>ID</li>
+<li>是否有交通信号控制</li>
+<li>转向方向（左、右、无）</li>
+<li>是否未遇交叉口内</li>
+<li>左侧的车道ID</li>
+<li>右侧的车道ID</li>
+<li>下一车道段的ID</li>
+<li>上一车道段的ID</li>
+<li>中心线坐标</li>
+<li>车道宽度：MIA为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3.84</mn><mi>m</mi><mo>±</mo><mn>0.89</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">3.84m \pm 0.89m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord">8</span><span class="mord">4</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">8</span><span class="mord">9</span><span class="mord mathdefault">m</span></span></span></span>，PIT为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3.97</mn><mi>m</mi><mo>±</mo><mn>1.04</mn><mi>m</mi></mrow><annotation encoding="application/x-tex">3.97m \pm 1.04m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">3</span><span class="mord">.</span><span class="mord">9</span><span class="mord">7</span><span class="mord mathdefault">m</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">±</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span><span class="mord">4</span><span class="mord mathdefault">m</span></span></span></span></li>
+</ul>
+<h1 id="轨迹预测baseline">轨迹预测Baseline</h1>
+<h2 id="算法">算法</h2>
+<p>数据集中尽可能地排除了一些匀速运动或者静止的场景，主要包括1）交叉口处，2）左转或右转，3）换道和4）密集交通流下的场景。</p>
+<p><strong>坐标和标准化</strong></p>
+<p>有三种坐标：</p>
+<ul>
+<li>原始轨迹数据的坐标系为城市坐标系</li>
+<li>模型中以车道中线为参考，定义了一个2D的曲线坐标系统，包括距离中心线的切线距离和垂向距离</li>
+<li>map-free模型中，将所有的信息都规整为：以原点开始，以<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>轴正向的某个点结束（即<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>y</mi><mi>T</mi></msup><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">y^T=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.035771em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>）<font color='red'>（没看懂）</font></li>
+</ul>
+<p><strong>特征工程</strong></p>
+<p>对于轨迹<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>V</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">V_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.22222em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，定义<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>时刻的social和spatial context：</p>
+<ul>
+<li>
+<p>对于social contex (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>s</mi><mi>i</mi><mi>t</mi></msubsup></mrow><annotation encoding="application/x-tex">s^t_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05222em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span></span></span></span>)，包括距离前、后对象的最小距离，以及对象数量</p>
+</li>
+<li>
+<p>对于spatial context (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>m</mi><mi>i</mi><mi>t</mi></msubsup></mrow><annotation encoding="application/x-tex">m^t_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05222em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord mathdefault">m</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span></span></span></span>)，将轨迹坐标转换为车道段坐标系下的坐标</p>
+</li>
+</ul>
+<p><strong>预测算法</strong></p>
+<p>两个算法：KNN和LSTM。</p>
+<h2 id="代码解析">代码解析</h2>
+<p><a href="https://github.com/jagjeet-singh/argoverse-forecasting">Baseline代码地址</a></p>
+<h3 id="特征计算compute_featurespy">特征计算(<code>compute_features.py</code>)</h3>
+<h4 id="1-arse_arguments-font-colorgraymethodfont">1. <code>arse_arguments</code> : <font color='gray'><em>(Method)</em></font></h4>
+<p>获取运行参数，包括：</p>
+<ul>
+<li><code>--data_dir</code>：原始数据csv文件所在文件夹路径</li>
+<li><code>--feature_dir</code>：处理后的特征数据存储文件夹路径</li>
+<li><code>--mode</code>：模式，仅能选择<code>train/val/test</code></li>
+<li><code>--batch_size</code>：并行计算的batch数</li>
+<li><code>--obs_len</code>：轨迹的可观测长度，<code>int</code></li>
+<li><code>--pred_len</code>：预测长度，<code>int</code></li>
+<li><code>-small</code>：是否使用小数据集，<code>bool</code> <font color='red'>（没看懂）</font></li>
+</ul>
+<h4 id="2-compute_features-font-colorgraymethodfontspan-idcompute_featuresspan">2. <code>compute_features</code> : <font color='gray'><em>(Method)</em></font><span id="compute_features"></span></h4>
+<p>计算social和spacial feature的主要函数，主要步骤包括：</p>
+<pre><code class="language-python">df = pd.read_csv(dir)  # 读入数据
+agent_track = df[...]  # agent车辆轨迹数据
+</code></pre>
+<pre><code class="language-python"># 提取social features
+social_features_utils_instance.compute_social_features(
+    df,  # 总数据
+    agent_track,  # agent车辆轨迹数据
+    args.obs_len,  # 观测长度
+    args.obs_len + args.pred_len,  # 总长度
+    RAW_DATA_FORMAT  # 关于df表头的关键字字典
+)
+map_features, map_feature_helpers = map_features_utils_instance.compute_map_features(
+    agent_track,
+    args.obs_len,
+    args.obs_len + args.pred_len,
+    RAW_DATA_FORMAT,
+    args.mode,
+)
+</code></pre>
+<p>To <a href="#compute_social_features">compute_social_features</a>; To <a href="#compute_map_features">compute_map_features</a></p>
+<h3 id="工具对象">工具对象</h3>
+<h4 id="social-feature计算social_features_utilspy">Social feature计算(<code>social_features_utils.py</code>)</h4>
+<h5 id="1-compute_social_features-span-idcompute_social_featuresspan">1. compute_social_features <span id="compute_social_features"></span></h5>
+<pre><code class="language-python">df_obs = df[len&lt;obs_len]  # 定义可观测总数据
+agent_track_obs = agent_track[len&lt;obs_len]  # 可观测agent数据
+# 提取相关的其他轨迹数据
+social_tracks_obs = filter_tracks(
+    df_obs, 
+    obs_len,
+    RAW_DATA_FORMAT  # 关于df表头的关键字字典
+)  
+# 获取各个时刻前后最近距离
+# [[min_front_0, min_back_0],
+#  [min_front_1, min_back_1],
+#  ...,
+#  [min_front_T, min_back_T]]
+min_distance_front_and_back_obs = self.get_min_distance_front_and_back(
+    agent_track_obs,
+    social_tracks_obs,
+    obs_len,
+    RAW_DATA_FORMAT,
+    viz=False
+)  
+# 获取附近对象的数量，1列数据
+num_neighbors_obs = self.get_num_neighbors(agent_track_obs,
+                                           social_tracks_obs, 
+                                           obs_len,
+                                           raw_data_format)
+# 合并前后距离和数量，一共变成3列
+social_features_obs = np.concatenate(
+    (min_distance_front_and_back_obs, num_neighbors_obs), axis=1)
+# 规整一个与agent数据长度相同的空集赋值，预测时域内各个特征默认为None
+return social_features[:obs_len] = social_features_obs
+</code></pre>
+<p>Back to <a href="#compute_features">compute_features</a></p>
+<p>To <a href="#filter_tracks">filter_tracks</a>; To <a href="#get_min_distance_front_and_back">get_min_distance_front_and_back</a>; To <a href="#get_num_neighbors">get_num_neighbors</a></p>
+<h5 id="2-filter_tracksspan-idfilter_tracksspan">2. filter_tracks<span id="filter_tracks"></span></h5>
+<p>过滤提取相关轨迹数据。</p>
+<pre><code class="language-python">df_groups = df_obs.groupby(&quot;TRACK_ID&quot;)
+for group_name, group_data in group： # 循环每个group：
+	...  # 数据不足EXIST_THRESHOLD=15个的跳过
+    ...  # 自车跳过
+    if get_is_track_stationary(group_data): continue  # 静止车辆跳过
+    # 补全缺失的轨迹数据
+    padded_track = pad_track(
+        group_data, 
+        seq_timestamps,  # 时间戳集合=np.unique(df_obs[&quot;TIMESTAMP&quot;].values)
+        obs_len,
+        RAW_DATA_FORMAT
+    )
+    social_tracks.append(padded_track)  # 添加到列表
+return social_tracks
+</code></pre>
+<p>Back to <a href="#compute_social_features">compute_social_features</a></p>
+<p>To <a href="#get_is_track_stationary">get_is_track_stationary</a> ；To <a href="#pad_track">pad_track</a></p>
+<h5 id="3-get_is_track_stationaryspan-idget_is_track_stationaryspan">3. get_is_track_stationary<span id="get_is_track_stationary"></span></h5>
+<p>检查轨迹是否为静止车辆。<font color='red'>（个人感觉这样的判定有点没有道理）</font></p>
+<pre><code class="language-python">vel = compute_velocity(group_data)  # 计算速度
+# 第STATIONARY_THRESHOLD=13个数据点的速度小于VELOCITY_THRESHOLD=1，认为是静止
+return True if vel[STATIONARY_THRESHOLD] &lt; VELOCITY_THRESHOLD else False
+</code></pre>
+<p>Back to <a href="#filter_tracks">filter_tracks</a></p>
+<p>To <a href="#compute_velocity">compute_velocity</a></p>
+<h5 id="4-compute_velocityspan-idcompute_velocityspan">4. compute_velocity<span id="compute_velocity"></span></h5>
+<p>计算速度。</p>
+<pre><code class="language-python">['X' or 'Y'].diff()/['TIMESTAMP'].diff()
+return vel = sqrt('X'**2 + 'Y'**2)  # shape(obs_len-1, 1)
+</code></pre>
+<p>Back to <a href="#get_is_track_stationary">get_is_track_stationary</a></p>
+<h5 id="5-pad_trackspan-idpad_trackspan">5. pad_track<span id="pad_track"></span></h5>
+<p>补全缺失数据。</p>
+<pre><code class="language-python"># 比较df_obs中时间戳set与当前轨迹的时间戳set，获得pad的起点和终点
+start_idx
+end_idx
+# 使用np.pad命令，用边缘填充start_idx之前和end_idx之后的数据
+padded_track_array = np.pad(group_data, ((start_idx, obs_len - end_idx - 1)),(0, 0), 'edge')
+# 处理离开又进入的情况，即中间段缺失数据
+padded_track_array = fill_track_lost_in_middle(
+    padded_track_array, 
+    seq_timestamps,  # df_obs的时间戳，全集
+    RAW_DATA_FORMAT
+)
+</code></pre>
+<p>Back to <a href="#filter_tracks">filter_tracks</a></p>
+<p>To <a href="#fill_track_lost_in_middle">fill_track_lost_in_middle</a></p>
+<h5 id="6-fill_track_lost_in_middlespan-idfill_track_lost_in_middlespan">6. fill_track_lost_in_middle<span id="fill_track_lost_in_middle"></span></h5>
+<p>处理离开又进入的情况，即中间段缺失数据。</p>
+<pre><code class="language-python"># 循环方式，逐行匹配时间戳，如果不存在，就使用上一行来填充
+i = 0
+for timestamp in seq_timestamps:
+    filled_track[0] = track_array(i)
+    	if timestamp in track_array['TIMESTAMP']:
+            i += 1
+</code></pre>
+<p>Back to <a href="#pad_track">pad_track</a></p>
+<h5 id="7-get_min_distance_front_and_backspan-idget_min_distance_front_and_backspan">7. get_min_distance_front_and_back<span id="get_min_distance_front_and_back"></span></h5>
+<p>获取自车前后对象的最小距离。</p>
+<pre><code class="language-python"># 新建保存变量，两列分别表示前后距离，DEFAULT_MIN_DIST_FRONT_AND_BACK=100
+min_distance_front_and_back = np.full((obs_len, 2), DEFAULT_MIN_DIST_FRONT_AND_BACK)
+for i in range(obs_len):  # 循环每个时刻
+    for social_track in social_tracks[:, i, :]:  # 各个时刻下所有周车的数据
+        instant_distance = sqrt((agent_x - neigh_x)**2 +
+                                (agent_y - neigh_y)**2)  # 计算各个周车的距离
+		# 如果距离大于NEARBY_DISTANCE_THRESHOLD=50米，continue
+        if instant_distance &gt; self.NEARBY_DISTANCE_THRESHOLD: continue
+        # 检查是在前还是在后
+        is_front_or_back = self.get_is_front_or_back(
+            agent_track[:2, :] if i == 0 else agent_track[:i + 1, :],
+            neigh_x,
+            neigh_y,
+            RAW_DATA_FORMAT,
+        )
+        # 根据前后来更新
+        if &quot;front&quot;:
+            min_distance_front_and_back[i, 0] = min(
+                min_distance_front_and_back[i, 0], 
+                instant_distance)
+        if &quot;back&quot;:
+            min_distance_front_and_back[i, 1] = min(
+                min_distance_front_and_back[i, 1], 
+                instant_distance)
+        return min_distance_front_and_back
+</code></pre>
+<p>Back to <a href="#compute_social_features">compute_social_features</a></p>
+<p>To <a href="#get_is_front_or_back">get_is_front_or_back</a></p>
+<h5 id="8-get_is_front_or_backspan-idget_is_front_or_backspan">8. get_is_front_or_back<span id="get_is_front_or_back"></span></h5>
+<p>检查车辆是在前还是在后。</p>
+<p>采用从后向前寻找agent_track上两个不同的点，确定车辆朝向，然后计算neigh_x和neigh_y与两个点之间距离，判断距离大小来确定是前还是后。</p>
+<p>Back to <a href="#get_min_distance_front_and_back">get_min_distance_front_and_back</a></p>
+<h5 id="9-get_num_neighborsspan-idget_num_neighborsspan">9. get_num_neighbors<span id="get_num_neighbors"></span></h5>
+<p>获取附近的对象数量。</p>
+<pre><code class="language-python">for i in range(obs_len):  # 循环每个时刻
+    for social_track in social_tracks[:, i, :]:  # 各个时刻下所有周车的数据
+        # 提取对应时刻各个周车坐标，计算距离
+        instant_distance = np.sqrt((agent_x - neigh_x)**2 +
+                                   (agent_y - neigh_y)**2)
+        # 如果距离小于NEARBY_DISTANCE_THRESHOLD=50，计数
+        if instant_distance &lt; self.NEARBY_DISTANCE_THRESHOLD: num_neighbors[i, 0] += 1
+return num_neighbors
+</code></pre>
+<p>Back to <a href="#compute_social_features">compute_social_features</a></p>
+<h4 id="map-feature计算map_features_utilspy">Map feature计算(<code>map_features_utils.py</code>)</h4>
+<h5 id="1-compute_map_featuresspan-idcompute_map_featuresspan">1. compute_map_features<span id="compute_map_features"></span></h5>
+<p>Back to <a href="#compute_features">compute_features</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello World]]></title>
+        <id>https://ChenChenGith.github.io/post/hello-world/</id>
+        <link href="https://ChenChenGith.github.io/post/hello-world/">
+        </link>
+        <updated>2021-02-04T02:25:47.000Z</updated>
+        <content type="html"><![CDATA[<p>Hello World！<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="bold">x</mtext><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></msubsup><mo>(</mo><mi mathvariant="script">Z</mi><mi>γ</mi><mi>V</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">\textbf{x}=\Sigma_{i=1}^{N}(\mathcal{Z} \gamma V(s))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textbf">x</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0999949999999998em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathcal" style="margin-right:0.07944em;">Z</span></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">≠</mi></mrow><annotation encoding="application/x-tex">\neq</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span></span></span></span><br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mo>∫</mo><mn>1</mn><mn>2</mn></msubsup><mi mathvariant="normal">和</mi><msubsup><mo>∑</mo><mn>2</mn><mn>1</mn></msubsup></mrow><annotation encoding="application/x-tex">\int_{1}^{2}和\sum_{2}^{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.3648280000000002em;vertical-align:-0.35582em;"></span><span class="mop"><span class="mop op-symbol small-op" style="margin-right:0.19445em;position:relative;top:-0.0005599999999999772em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0090080000000001em;"><span style="top:-2.34418em;margin-left:-0.19445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span><span style="top:-3.2579000000000002em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.35582em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord cjk_fallback">和</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.954008em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span></span></span></span></p>
+<h1 id="标题1">标题1</h1>
+<h2 id="二级">二级</h2>
+<h3 id="三级">三级</h3>
+<h1 id="标题2">标题2</h1>
+<h2 id="2二级">2二级</h2>
+<h3 id="2三级">2三级</h3>
+<p>用于测试的一个开始</p>
 ]]></content>
     </entry>
 </feed>
