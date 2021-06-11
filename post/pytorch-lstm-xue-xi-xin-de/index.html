@@ -6,10 +6,10 @@
 
 <title>Pytorch-LSTM学习心得 | Chen Chen</title>
 
-<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1623373998242">
+<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1623373998281">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
+<link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623373998242" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1623373998281" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -113,7 +113,7 @@
 <p>其实刚刚开始看的时候，是很迷茫的。这与我自己比较差的数学功底（主要是线性代数）有关系，因此在开始的一段时间内并不能很好的理解所谓的input_size、hidden_size这些东西到底意味者什么，而我的input数据应该是何种shape才能够正确对应到这些网络参数。</p>
 <p>大多数的网站都使用默认的XX_size这类的单词来说明，从python的编程角度来看，很容理解为某个变量的shape，但实际上带有size的大多是一个int值，所以一开始很难理解这个size值到底是指张量的哪个维度。</p>
 <p>在不断地摸索过程中，我总结出一个规律，就是：<strong>所有的这些size大小指的都是数据或中间张量中最后一维向量的列数</strong>。而这里的最后一维，其实就是<strong>每一个独立数据点的特征向量</strong>。这是由于神经网络中都是线性变换，用到最多的就是矩阵乘法：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>W</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">A=WX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>，一个典型的感知器模型如下图所示：</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1620738001306.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://ChenChenGith.github.io/post-images/1620738001306.png" alt="" loading="lazy"></figure>
 <p>假设输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>，即每个数据点的特征数量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>个（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>维向量）；输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>的大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，即输出的每个数据点经过转换后的特征数量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>个（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>维向量）；那么中间需要学习的权重矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>的大小就必需为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>m</mi><mo separator="true">,</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(m,n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。当前大多数神经网络中的权重矩阵都是定大小的，所以这也就是为什么在定义LSTM等网络参数时必需关心输入size和输出size，这两者就定义了权重矩阵的shape。</p>
 <p>而在做矩阵乘法的时候，除了最后一维外，其他的的维度是不变的，或者说与权重矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>无关的，所以就可以理解到，神经网络实际上每次变换都是针对最后一维（也就是特征向量）做变换的。</p>
 <p>由于这种传递性质，如果需要更改前边维度的大小，就必须采用其他的方法，比如使用torch.tensor带有的view()方法来对维度大小做变换，又或者类似句子翻译问题中，通过构建一个解码器，构造一个预定义的SOS向量，作为解码器初始输入来控制解码器输出的前两维大小。</p>
@@ -131,7 +131,7 @@
 </ul>
 <p>有了以上的理解，那么就可以知道：符合这个模型的输入数据input_data张量的大小应该为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mn>3</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span>。</p>
 <p>在进入模型输入输出说明前，借用<a href="https://zhuanlan.zhihu.com/p/79064602">web_2</a>中的一张图片来进行预先展示，后续可以对照此图片理解。<br>
-<img src="http://localhost:4000/post-images/1620741660201.jpg" alt="" loading="lazy"></p>
+<img src="https://ChenChenGith.github.io/post-images/1620741660201.jpg" alt="" loading="lazy"></p>
 <h3 id="模型输入">模型输入</h3>
 <p>Pytorch给出的输入格式为：</p>
 <pre><code class="language-python">inputs: input, (h_0, c_0)
@@ -200,7 +200,7 @@ c_0: shape(num_layer*num_directions, batch, hidden_size)
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="http://localhost:4000/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/" class="post-title gt-a-link">
+                <a href="https://ChenChenGith.github.io/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/" class="post-title gt-a-link">
                     【论文阅读】Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions
                 </a>
             </div>
@@ -234,7 +234,7 @@ c_0: shape(num_layer*num_directions, batch, hidden_size)
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://ChenChenGith.github.io/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 
