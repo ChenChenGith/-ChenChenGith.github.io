@@ -6,10 +6,10 @@
 
 <title>关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法 | Chen Chen</title>
 
-<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1623373998281">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1623373998242">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623373998281" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1623373998242" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -111,7 +111,7 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
 搜索后看到<a href="https://blog.csdn.net/Victor_X/article/details/110082033?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control">web1</a>和<a href="https://www.cnblogs.com/Flat-White/p/14678858.html">web2</a>提供了一种根本性解决问题的方法。</p>
 <p>本问题出现主要是因为torch包中包含了名为libiomp5md.dll的文件，与Anaconda环境中的同一个文件出现了某种冲突，所以需要删除一个。</p>
 <p>在Anaconda文件夹下搜索，如下图，删除Anaconda包中libiomp5md.dll这个文件，即下图所选定的那个。<br>
-<img src="https://ChenChenGith.github.io/post-images/1620790594180.png" alt="" loading="lazy"><br>
+<img src="http://localhost:4000/post-images/1620790594180.png" alt="" loading="lazy"><br>
 但如果是在某个python环境下，则需要删除的是该环境下的对应文件。</p>
 <p>也就是：</p>
 <ul>
@@ -127,7 +127,7 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-xin-de/" class="post-title gt-a-link">
+                <a href="http://localhost:4000/post/pytorch-lstm-xue-xi-xin-de/" class="post-title gt-a-link">
                     Pytorch-LSTM学习心得
                 </a>
             </div>
@@ -161,7 +161,7 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://ChenChenGith.github.io/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 

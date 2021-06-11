@@ -6,10 +6,10 @@
 
 <title>【论文阅读】Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions | Chen Chen</title>
 
-<link rel="shortcut icon" href="https://ChenChenGith.github.io/favicon.ico?v=1623373998281">
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico?v=1623373998242">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://ChenChenGith.github.io/styles/main.css">
+<link rel="stylesheet" href="http://localhost:4000/styles/main.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css">
 
 <script src="https://cdn.jsdelivr.net/npm/@highlightjs/cdn-assets/highlight.min.js"></script>
@@ -77,7 +77,7 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1623373998281" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1623373998242" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
@@ -96,7 +96,7 @@
                         · 2021-03-12 ·
                     </time>
                     
-                        <a href="https://ChenChenGith.github.io/tag/CqRfwL1Qs/" class="post-tags">
+                        <a href="http://localhost:4000/tag/CqRfwL1Qs/" class="post-tags">
                             # 论文阅读
                         </a>
                     
@@ -105,7 +105,7 @@
                     <p>【来自Zoox公司】</p>
 <h1 id="摘要">摘要</h1>
 <p>解决实际复杂驾驶场景下的车辆未来状态预测问题。以往的研究是短时预测，没有充分利用3D感知数据和语义地图数据。这篇论文将语义信息使用统一的空间网格进行表征，从而可以使用深度卷积模型来融合场景信息。因此可以让对象和与其他对象及环境在每个时步进行交互。使用监督学习方法将未来的状态表征为分布。<br>
-<img src="https://ChenChenGith.github.io/post-images/1615522000423.png" alt="框架" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1615522000423.png" alt="框架" loading="lazy"></p>
 <blockquote>
 <p><em>上图：俯视图下的状态预测任务。红色框为预测对象，其未来轨迹真值为粉色线段。亮蓝色线段是最可能的预测轨迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表示。环境中的其他语义信息使用不同的颜色展示，包括车道线、人行横道和停车线。</em></p>
 </blockquote>
@@ -133,7 +133,7 @@
 将其他的场景信息表示为一个RGB图像<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>D</mi><mi>t</mi></msup></mrow><annotation encoding="application/x-tex">D^t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span></span></span>，大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mo>×</mo><mi>H</mi><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">W\times H\times 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>。包括所有实体的长方形有向框，并用颜色区分类别；交叉口处有信号灯的许可信息，分别使用不同颜色的交叉口连接线来表示。<br/><br>
 <strong>时序模型</strong>：<br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>时刻所有输入，以及目标实体<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>通过串联的方式构建一个张量：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mi>i</mi><mi>t</mi></msubsup><mo>=</mo><mo fence="false">[</mo><msubsup><mi>E</mi><mi>i</mi><mi>t</mi></msubsup><mo separator="true">,</mo><msubsup><mi>E</mi><mrow><mo>−</mo><mi>i</mi></mrow><mi>t</mi></msubsup><mo separator="true">,</mo><msup><mi>D</mi><mi>t</mi></msup><mo separator="true">,</mo><mi>R</mi><mo fence="false">]</mo></mrow><annotation encoding="application/x-tex">C_i^t=\big[ E_i^t,E_{-i}^t,D^t,R\big]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05222em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="mord"><span class="delimsizing size1">[</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">i</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.316995em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord"><span class="delimsizing size1">]</span></span></span></span></span>，大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mo>×</mo><mi>H</mi><mo>×</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">W\times H \times 20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，如下图所示。每个预测时刻，坐标圆心固定为目标实体的中心。<br>
-<img src="https://ChenChenGith.github.io/post-images/1615532913551.png" alt="" loading="lazy"></p>
+<img src="http://localhost:4000/post-images/1615532913551.png" alt="" loading="lazy"></p>
 <h2 id="输出表示不确定性和多模式建模">输出表示：不确定性和多模式建模</h2>
 <p>好的输出表示需要有以下特征：</p>
 <ul>
@@ -179,7 +179,7 @@
         
             <div class="next-post">
                 <div class="next gt-c-content-color-first">下一篇</div>
-                <a href="https://ChenChenGith.github.io/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/" class="post-title gt-a-link">
+                <a href="http://localhost:4000/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/" class="post-title gt-a-link">
                     【论文阅读】MultiPath: Multiple probabilistic anchor trajectory hypotheses for behavior prediction
                 </a>
             </div>
@@ -213,7 +213,7 @@
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://ChenChenGith.github.io/atom.xml" target="_blank">RSS</a></a>
+                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="http://localhost:4000/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
 
