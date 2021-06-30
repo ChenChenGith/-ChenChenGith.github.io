@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://localhost:4000</id>
+    <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-06-11T01:37:21.057Z</updated>
+    <updated>2021-06-30T04:07:32.674Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://localhost:4000"/>
-    <link rel="self" href="http://localhost:4000/atom.xml"/>
+    <link rel="alternate" href="https://ChenChenGith.github.io"/>
+    <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
     <subtitle>时代难免让人浮躁，沉得住气才能前行！</subtitle>
-    <logo>http://localhost:4000/images/avatar.png</logo>
-    <icon>http://localhost:4000/favicon.ico</icon>
+    <logo>https://ChenChenGith.github.io/images/avatar.png</logo>
+    <icon>https://ChenChenGith.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Chen Chen</rights>
     <entry>
         <title type="html"><![CDATA[关于OMP: Error #15: Initializing libiomp5md.dll, but found libiomp5md.dll already initialized.错误解决方法]]></title>
-        <id>http://localhost:4000/post/guan-yu-omp-error-15-initializing-libiomp5mddll-but-found-libiomp5mddll-already-initializedcuo-wu-jie-jue-fang-fa/</id>
-        <link href="http://localhost:4000/post/guan-yu-omp-error-15-initializing-libiomp5mddll-but-found-libiomp5mddll-already-initializedcuo-wu-jie-jue-fang-fa/">
+        <id>https://ChenChenGith.github.io/post/guan-yu-omp-error-15-initializing-libiomp5mddll-but-found-libiomp5mddll-already-initializedcuo-wu-jie-jue-fang-fa/</id>
+        <link href="https://ChenChenGith.github.io/post/guan-yu-omp-error-15-initializing-libiomp5mddll-but-found-libiomp5mddll-already-initializedcuo-wu-jie-jue-fang-fa/">
         </link>
         <updated>2021-05-12T03:28:00.000Z</updated>
         <content type="html"><![CDATA[<p>在一次Pycharm下debug时，报错：</p>
@@ -29,7 +29,7 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
 搜索后看到<a href="https://blog.csdn.net/Victor_X/article/details/110082033?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control">web1</a>和<a href="https://www.cnblogs.com/Flat-White/p/14678858.html">web2</a>提供了一种根本性解决问题的方法。</p>
 <p>本问题出现主要是因为torch包中包含了名为libiomp5md.dll的文件，与Anaconda环境中的同一个文件出现了某种冲突，所以需要删除一个。</p>
 <p>在Anaconda文件夹下搜索，如下图，删除Anaconda包中libiomp5md.dll这个文件，即下图所选定的那个。<br>
-<img src="http://localhost:4000/post-images/1620790594180.png" alt="" loading="lazy"><br>
+<img src="https://ChenChenGith.github.io/post-images/1620790594180.png" alt="" loading="lazy"><br>
 但如果是在某个python环境下，则需要删除的是该环境下的对应文件。</p>
 <p>也就是：</p>
 <ul>
@@ -41,8 +41,8 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
     </entry>
     <entry>
         <title type="html"><![CDATA[Pytorch-LSTM学习心得]]></title>
-        <id>http://localhost:4000/post/pytorch-lstm-xue-xi-xin-de/</id>
-        <link href="http://localhost:4000/post/pytorch-lstm-xue-xi-xin-de/">
+        <id>https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-xin-de/</id>
+        <link href="https://ChenChenGith.github.io/post/pytorch-lstm-xue-xi-xin-de/">
         </link>
         <updated>2021-05-11T09:54:41.000Z</updated>
         <summary type="html"><![CDATA[<p>近两个月的时间基本都是在与数据集和神经网络作斗争。至现在为止，终于算是在完成了数据规整和初步的LSTM-seq2seq网络的实现。并且开始维护了自己的<a href="https://github.com/ChenChenGith/argoverse-api-ccuse">代码项目</a>。</p>
@@ -63,7 +63,7 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
 <p>其实刚刚开始看的时候，是很迷茫的。这与我自己比较差的数学功底（主要是线性代数）有关系，因此在开始的一段时间内并不能很好的理解所谓的input_size、hidden_size这些东西到底意味者什么，而我的input数据应该是何种shape才能够正确对应到这些网络参数。</p>
 <p>大多数的网站都使用默认的XX_size这类的单词来说明，从python的编程角度来看，很容理解为某个变量的shape，但实际上带有size的大多是一个int值，所以一开始很难理解这个size值到底是指张量的哪个维度。</p>
 <p>在不断地摸索过程中，我总结出一个规律，就是：<strong>所有的这些size大小指的都是数据或中间张量中最后一维向量的列数</strong>。而这里的最后一维，其实就是<strong>每一个独立数据点的特征向量</strong>。这是由于神经网络中都是线性变换，用到最多的就是矩阵乘法：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>W</mi><mi>X</mi></mrow><annotation encoding="application/x-tex">A=WX</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>，一个典型的感知器模型如下图所示：</p>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1620738001306.png" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://ChenChenGith.github.io/post-images/1620738001306.png" alt="" loading="lazy"></figure>
 <p>假设输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mi>m</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,m)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">m</span><span class="mclose">)</span></span></span></span>，即每个数据点的特征数量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>个（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">m</span></span></span></span>维向量）；输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>的大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，即输出的每个数据点经过转换后的特征数量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>个（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>维向量）；那么中间需要学习的权重矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>的大小就必需为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>m</mi><mo separator="true">,</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(m,n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">m</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>。当前大多数神经网络中的权重矩阵都是定大小的，所以这也就是为什么在定义LSTM等网络参数时必需关心输入size和输出size，这两者就定义了权重矩阵的shape。</p>
 <p>而在做矩阵乘法的时候，除了最后一维外，其他的的维度是不变的，或者说与权重矩阵<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi></mrow><annotation encoding="application/x-tex">W</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span></span></span></span>无关的，所以就可以理解到，神经网络实际上每次变换都是针对最后一维（也就是特征向量）做变换的。</p>
 <p>由于这种传递性质，如果需要更改前边维度的大小，就必须采用其他的方法，比如使用torch.tensor带有的view()方法来对维度大小做变换，又或者类似句子翻译问题中，通过构建一个解码器，构造一个预定义的SOS向量，作为解码器初始输入来控制解码器输出的前两维大小。</p>
@@ -81,7 +81,7 @@ os.environ[&quot;KMP_DUPLICATE_LIB_OK&quot;]=&quot;TRUE
 </ul>
 <p>有了以上的理解，那么就可以知道：符合这个模型的输入数据input_data张量的大小应该为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mo>∗</mo><mo separator="true">,</mo><mo>∗</mo><mo separator="true">,</mo><mn>3</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(*,*,3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">∗</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span>。</p>
 <p>在进入模型输入输出说明前，借用<a href="https://zhuanlan.zhihu.com/p/79064602">web_2</a>中的一张图片来进行预先展示，后续可以对照此图片理解。<br>
-<img src="http://localhost:4000/post-images/1620741660201.jpg" alt="" loading="lazy"></p>
+<img src="https://ChenChenGith.github.io/post-images/1620741660201.jpg" alt="" loading="lazy"></p>
 <h3 id="模型输入">模型输入</h3>
 <p>Pytorch给出的输入格式为：</p>
 <pre><code class="language-python">inputs: input, (h_0, c_0)
@@ -146,14 +146,14 @@ c_0: shape(num_layer*num_directions, batch, hidden_size)
     </entry>
     <entry>
         <title type="html"><![CDATA[【论文阅读】Rules of the road: Predicting driving behavior with a convolutional model of semantic interactions]]></title>
-        <id>http://localhost:4000/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/</id>
-        <link href="http://localhost:4000/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/">
+        <id>https://ChenChenGith.github.io/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/</id>
+        <link href="https://ChenChenGith.github.io/post/rules-of-the-road-predicting-driving-behavior-with-a-convolutional-model-of-semantic-interactions/">
         </link>
         <updated>2021-03-12T03:55:00.000Z</updated>
         <content type="html"><![CDATA[<p>【来自Zoox公司】</p>
 <h1 id="摘要">摘要</h1>
 <p>解决实际复杂驾驶场景下的车辆未来状态预测问题。以往的研究是短时预测，没有充分利用3D感知数据和语义地图数据。这篇论文将语义信息使用统一的空间网格进行表征，从而可以使用深度卷积模型来融合场景信息。因此可以让对象和与其他对象及环境在每个时步进行交互。使用监督学习方法将未来的状态表征为分布。<br>
-<img src="http://localhost:4000/post-images/1615522000423.png" alt="框架" loading="lazy"></p>
+<img src="https://ChenChenGith.github.io/post-images/1615522000423.png" alt="框架" loading="lazy"></p>
 <blockquote>
 <p><em>上图：俯视图下的状态预测任务。红色框为预测对象，其未来轨迹真值为粉色线段。亮蓝色线段是最可能的预测轨迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表迹，绿色线段是可能的其他轨迹。不确定性椭圆来描述最可能预测轨迹的不确定性。其他对象使用不同颜色渲染，包括洋红色的行人，蓝色的车辆和橘色的自行车。自车为绿色。速度单位向量使用橘色直线表示。环境中的其他语义信息使用不同的颜色展示，包括车道线、人行横道和停车线。</em></p>
 </blockquote>
@@ -181,7 +181,7 @@ c_0: shape(num_layer*num_directions, batch, hidden_size)
 将其他的场景信息表示为一个RGB图像<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>D</mi><mi>t</mi></msup></mrow><annotation encoding="application/x-tex">D^t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span></span></span>，大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mo>×</mo><mi>H</mi><mo>×</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">W\times H\times 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span>。包括所有实体的长方形有向框，并用颜色区分类别；交叉口处有信号灯的许可信息，分别使用不同颜色的交叉口连接线来表示。<br/><br>
 <strong>时序模型</strong>：<br>
 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>时刻所有输入，以及目标实体<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.65952em;vertical-align:0em;"></span><span class="mord mathdefault">i</span></span></span></span>通过串联的方式构建一个张量：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msubsup><mi>C</mi><mi>i</mi><mi>t</mi></msubsup><mo>=</mo><mo fence="false">[</mo><msubsup><mi>E</mi><mi>i</mi><mi>t</mi></msubsup><mo separator="true">,</mo><msubsup><mi>E</mi><mrow><mo>−</mo><mi>i</mi></mrow><mi>t</mi></msubsup><mo separator="true">,</mo><msup><mi>D</mi><mi>t</mi></msup><mo separator="true">,</mo><mi>R</mi><mo fence="false">]</mo></mrow><annotation encoding="application/x-tex">C_i^t=\big[ E_i^t,E_{-i}^t,D^t,R\big]</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05222em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.07153em;">C</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:-0.07153em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="mord"><span class="delimsizing size1">[</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-2.441336em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mathdefault mtight">i</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.316995em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="mord"><span class="delimsizing size1">]</span></span></span></span></span>，大小为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>W</mi><mo>×</mo><mi>H</mi><mo>×</mo><mn>20</mn></mrow><annotation encoding="application/x-tex">W\times H \times 20</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">W</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">0</span></span></span></span>，如下图所示。每个预测时刻，坐标圆心固定为目标实体的中心。<br>
-<img src="http://localhost:4000/post-images/1615532913551.png" alt="" loading="lazy"></p>
+<img src="https://ChenChenGith.github.io/post-images/1615532913551.png" alt="" loading="lazy"></p>
 <h2 id="输出表示不确定性和多模式建模">输出表示：不确定性和多模式建模</h2>
 <p>好的输出表示需要有以下特征：</p>
 <ul>
@@ -223,8 +223,8 @@ c_0: shape(num_layer*num_directions, batch, hidden_size)
     </entry>
     <entry>
         <title type="html"><![CDATA[【论文阅读】MultiPath: Multiple probabilistic anchor trajectory hypotheses for behavior prediction]]></title>
-        <id>http://localhost:4000/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/</id>
-        <link href="http://localhost:4000/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/">
+        <id>https://ChenChenGith.github.io/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/</id>
+        <link href="https://ChenChenGith.github.io/post/multipath-multiple-probabilistic-anchor-trajectory-hypotheses-for-behavior-prediction/">
         </link>
         <updated>2021-03-11T08:55:52.000Z</updated>
         <content type="html"><![CDATA[<p><strong>[来自Waymo LLC]</strong></p>
@@ -258,7 +258,7 @@ c_0: shape(num_layer*num_directions, batch, hidden_size)
 </ol>
 </li>
 </ul>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1615453317447.png" alt="模型构架.png" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://ChenChenGith.github.io/post-images/1615453317447.png" alt="模型构架.png" loading="lazy"></figure>
 <hr>
 <h1 id="方法">方法</h1>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">x</mi></mrow><annotation encoding="application/x-tex">\rm x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">x</span></span></span></span></span>：所有智能体历史轨迹和环境信息（如车道线、信号等状态等）<br>
@@ -369,8 +369,8 @@ c_0: shape(num_layer*num_directions, batch, hidden_size)
     </entry>
     <entry>
         <title type="html"><![CDATA[高斯混合模型]]></title>
-        <id>http://localhost:4000/post/hun-he-gao-si-mo-xing/</id>
-        <link href="http://localhost:4000/post/hun-he-gao-si-mo-xing/">
+        <id>https://ChenChenGith.github.io/post/hun-he-gao-si-mo-xing/</id>
+        <link href="https://ChenChenGith.github.io/post/hun-he-gao-si-mo-xing/">
         </link>
         <updated>2021-03-10T11:42:07.000Z</updated>
         <content type="html"><![CDATA[<p>高斯模型也叫正态分布，是常用的一种变量分布模型。</p>
@@ -419,7 +419,7 @@ sns.distplot(data_3[:, 0],hist=False, color=&quot;red&quot;)
 
 plt.show()
 </code></pre>
-<figure data-type="image" tabindex="1"><img src="http://localhost:4000/post-images/1615378761439.png" alt="" width="600" height="600" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://ChenChenGith.github.io/post-images/1615378761439.png" alt="" width="600" height="600" loading="lazy"></figure>
 <h1 id="混合高斯模型">混合高斯模型</h1>
 <p>上述代码建立了三组来自不同高斯分布的二维坐标数据，使用一个高斯模型无法描述，因此需要引入高斯混合模型。高斯混合模型可以看作是由<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi></mrow><annotation encoding="application/x-tex">K</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span></span></span></span>个单高斯模型组合而成的模型，这K个子模型是混合模型的隐变量。高斯混合模型的概率分布如下：</p>
 <p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>=</mo><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></msubsup><msub><mi>α</mi><mi>k</mi></msub><mi>N</mi><mo>(</mo><msub><mi>μ</mi><mi>k</mi></msub><mo separator="true">,</mo><msub><mi mathvariant="normal">Σ</mi><mi>k</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">P(x)=\sum^K_{k=1}\alpha_kN(\mu_k,\Sigma_k)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2809409999999999em;vertical-align:-0.29971000000000003em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.981231em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.0037em;">α</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:-0.0037em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">μ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
@@ -433,8 +433,8 @@ plt.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[【生活随笔】基金啊基金]]></title>
-        <id>http://localhost:4000/post/sheng-huo-sui-bi-ji-jin-a-ji-jin/</id>
-        <link href="http://localhost:4000/post/sheng-huo-sui-bi-ji-jin-a-ji-jin/">
+        <id>https://ChenChenGith.github.io/post/sheng-huo-sui-bi-ji-jin-a-ji-jin/</id>
+        <link href="https://ChenChenGith.github.io/post/sheng-huo-sui-bi-ji-jin-a-ji-jin/">
         </link>
         <updated>2021-03-01T11:22:45.000Z</updated>
         <content type="html"><![CDATA[<p>上周六李老师又看了一遍基金。唉，提出了一些问题，改了两天，越改越迷茫：到底啥是科学问题？写到什么程度才算把科学问题写透了？</p>
@@ -445,8 +445,8 @@ plt.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[【科研随笔】基金写作心得]]></title>
-        <id>http://localhost:4000/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/</id>
-        <link href="http://localhost:4000/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/">
+        <id>https://ChenChenGith.github.io/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/</id>
+        <link href="https://ChenChenGith.github.io/post/ke-yan-sui-bi-ji-jin-xie-zuo-xin-de/">
         </link>
         <updated>2021-02-23T09:35:09.000Z</updated>
         <summary type="html"><![CDATA[<p>【<font color=gray>施工中...</font>】</p>
@@ -492,8 +492,8 @@ plt.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[【生活随笔】博后半年小结]]></title>
-        <id>http://localhost:4000/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/</id>
-        <link href="http://localhost:4000/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/">
+        <id>https://ChenChenGith.github.io/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/</id>
+        <link href="https://ChenChenGith.github.io/post/sheng-huo-sui-bi-jian-nan-de-chu-jing/">
         </link>
         <updated>2021-02-21T10:20:11.000Z</updated>
         <content type="html"><![CDATA[<p>来到清华已经过去了半年，本来应该是在春节前总结最为合适，但因为一直忙着写基金本子，一直拖到了年后来。<br>
@@ -520,8 +520,8 @@ plt.show()
     </entry>
     <entry>
         <title type="html"><![CDATA[【未完成】自动驾驶数据集-Argoverse Dataset-Map&Forecasting-简介]]></title>
-        <id>http://localhost:4000/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/</id>
-        <link href="http://localhost:4000/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/">
+        <id>https://ChenChenGith.github.io/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/</id>
+        <link href="https://ChenChenGith.github.io/post/zi-dong-jia-shi-shu-ju-ji-argoverse-dataset-mapandforecasting/">
         </link>
         <updated>2021-02-10T11:08:57.000Z</updated>
         <content type="html"><![CDATA[<p>Argoverse数据集是由Argo AI、卡内基梅隆大学、佐治亚理工学院发布的用于支持自动驾驶汽车3D Tracking和Motion Forecasting研究的数据集。本篇博客主要对其中的HD Map和Motion Forecasting 数据集进行简介。</p>
@@ -763,8 +763,8 @@ return num_neighbors
     </entry>
     <entry>
         <title type="html"><![CDATA[Hello World]]></title>
-        <id>http://localhost:4000/post/hello-world/</id>
-        <link href="http://localhost:4000/post/hello-world/">
+        <id>https://ChenChenGith.github.io/post/hello-world/</id>
+        <link href="https://ChenChenGith.github.io/post/hello-world/">
         </link>
         <updated>2021-02-04T02:25:47.000Z</updated>
         <content type="html"><![CDATA[<p>Hello World！<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext mathvariant="bold">x</mtext><mo>=</mo><msubsup><mi mathvariant="normal">Σ</mi><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></msubsup><mo>(</mo><mi mathvariant="script">Z</mi><mi>γ</mi><mi>V</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>)</mo></mrow><annotation encoding="application/x-tex">\textbf{x}=\Sigma_{i=1}^{N}(\mathcal{Z} \gamma V(s))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord text"><span class="mord textbf">x</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.0999949999999998em;vertical-align:-0.258664em;"></span><span class="mord"><span class="mord">Σ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8413309999999999em;"><span style="top:-2.441336em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.258664em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord mathcal" style="margin-right:0.07944em;">Z</span></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><br>
