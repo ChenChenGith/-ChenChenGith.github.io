@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ChenChenGith.github.io</id>
     <title>Chen Chen</title>
-    <updated>2021-07-01T08:28:42.106Z</updated>
+    <updated>2021-07-05T04:00:04.297Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ChenChenGith.github.io"/>
     <link rel="self" href="https://ChenChenGith.github.io/atom.xml"/>
@@ -549,7 +549,7 @@ plt.show()
 <li>ID</li>
 <li>是否有交通信号控制</li>
 <li>转向方向（左、右、无）</li>
-<li>是否未遇交叉口内</li>
+<li>是否位于交叉口内</li>
 <li>左侧的车道ID</li>
 <li>右侧的车道ID</li>
 <li>下一车道段的ID</li>
